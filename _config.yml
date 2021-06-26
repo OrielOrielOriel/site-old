@@ -17,9 +17,9 @@ author:
   email: your-email@email.com # email adress
 
 # URL settings
-url: "https://www.hackingonthehorizon.com" #
+url: "https://hackingonthehorizon.com" #
 baseurl: "/" # leave blank if not wishd
-permalink: "https://www.hackingonthehorizon.com"
+permalink: "https://hackingonthehorizon.com"
 permalink: pretty 
 
 
