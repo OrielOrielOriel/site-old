@@ -1,25 +1,25 @@
-site: Gesko
-title: Gesko
+site: Hacking on the Horizon
+title: Hacking on the Horizon
 description: >-
-  just a minimalist, personal blog
+  Oriel's personal site and blog.
 googlewebfonts: Fira+Code:wght@400;500;700
 lang: en-US
-timezone: Rome
-repo: https://github.com/p0wex/Gesko # site repo [optional]
+timezone: America/Chicago
+repo: https://github.com/OrielOrielOriel/site # site repo [optional]
 data-theme: dark # default theme "dark" | "light"
 
 author:
-  name: p0wex
-  bio: just a minimalist, personal blog
-  username: p0wex # general username
-  github: p0wex # github username
-  twitter: P0Wex # twitter username
+  name: Oriana Elise Farrugia (she/her)
+  bio: I like hacking, security code review, software dev, and cooking.
+  username: oriel # general username
+  github: OrielOrielOriel # github username
+  twitter: OrielOrielOriel # twitter username
   email: your-email@email.com # email adress
 
 # URL settings
-url: "https://powex.ml" #
-baseurl: "/Gesko" # leave blank if not wishd
-permalink: "https://powex.ml/Gesko/"
+url: "http://127.0.0.1:4000" #
+baseurl: "/" # leave blank if not wishd
+permalink: "http://127.0.0.1:4000"
 permalink: pretty 
 
 
