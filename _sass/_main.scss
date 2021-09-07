@@ -353,6 +353,10 @@ main {
   position: initial;
 
   .social-footer-icons {
+    .signature-emoji {
+	  font-size: 1.3rem;
+	  justify-content: flex-end;
+	  }
      
     .fa {
       font-size: 1.3rem;
@@ -364,9 +368,6 @@ main {
       }
     }
   }
-  .social-footer-signature {
-	justify-content: flex-end;
-	}
 }
 
 @media screen and (max-width: 45rem) {
