@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Archive - CTF Writeup - Jack (THM)
+title: Archive - CTF Writeup - Jack {THM}
 description: An archive of an old writeup I wrote about the THM room "Jack"
 summary: A writeup of the THM room "Jack"
 tags: archive ctf writeup

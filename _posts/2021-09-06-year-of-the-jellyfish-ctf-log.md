@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CTF Log - Year of the Jellyfish (THM)
+title: CTF Log - Year of the Jellyfish {THM}
 description: A log of how I did the TryHackMe room Year of the Jellyfish by Muirland Oracle
 summary: A log of the THM room "Year of the Jellyfish"
 tags: ctf log

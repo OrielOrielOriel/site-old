@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Archive - CTF Writeup - Tempus Fugit Durius (THM)
+title: Archive - CTF Writeup - Tempus Fugit Durius {THM}
 description: An archive of an old writeup I wrote about the THM room "Tempus Fugit Durius"
 summary: A writeup of the THM room "Tempus Fugit Durius"
 tags: archive ctf writeup

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Archive - CTF Writeup - HA Joker CTF (THM)
+title: Archive - CTF Writeup - HA Joker CTF {THM}
 description: An archive of an old writeup I wrote about the THM room "HA Joker CTF"
 summary: A writeup of the THM room "HA Joker CTF"
 tags: archive ctf writeup
