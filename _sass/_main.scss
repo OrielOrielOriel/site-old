@@ -175,12 +175,14 @@ a {
 
 code,
 pre {
+  overflow-x: auto;
 	background: var(--code-bg-color);
 	margin: 0 -27px;
 	border-width: 1px;
 }
 
 code {
+  overflow-x: auto;
 	margin: unset;
 	padding: 0.1rem;
 	color: var(--light-text-color);
