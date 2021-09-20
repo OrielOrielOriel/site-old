@@ -47,14 +47,14 @@ The challenge provided a file named `tsunami`. Using the `file` command on it re
  
 I add the .wav extension to it and opened it in Audacity. After clicking on the *spectogram* view mode, the flag is revealed.
  
-![/assets/media/hacktivity2021/tsunami.png|Flag shown as a spectogram]
+![Flag shown as a spectogram](/assets/media/hacktivity2021/tsunami.png)
  
 ### Pimple
 Challenge Author: @JohnHammond#6971  
 
 The challenge provided a file named `pimple`. Using the `file` command on it reveals that it is a type of image file. I open it in Gimp and see multiple layers of pictures of random people's faces. One of the layers has the flag in the image. 
  
-![/assets/media/hacktivity2021/pimple.png|Flag in one of the image layers]
+![Flag in one of the image layers](/assets/media/hacktivity2021/pimple.png)
  
 ## Web
 ### Swaggy
@@ -64,11 +64,11 @@ The challenge provided Swagger documentation and an API with the `/flag` GET req
  
 As shown below, performing the GET request results in the `missing authorization header` response. 
  
-![/assets/media/hacktivity2021/swaggy1.png|Swagger API documentation]
+![Swagger API documentation](/assets/media/hacktivity2021/swaggy1.png)
   
 I initially try the `admin:password` credentials, which doesn't work. My second guess is `admin:admin` which results in the server responding with the flag.
  
-![/assets/media/hacktivity2021/swaggy2.png|Request with basic auth header and flag response]
+![Request with basic auth header and flag response](/assets/media/hacktivity2021/swaggy2.png)
  
 ### Confidentiality
 Challenge Author: @JohnHammond#6971  
@@ -77,7 +77,7 @@ The challenge provided a website with a simple form field. Submitting the name o
  
 By submitting `/etc/hosts;cat flag.txt`, the underlying application performs the `ls -lsa /etc/hosts` command, then because of the `;` performs the `cat flag.txt` command.
  
-![/assets/media/hacktivity2021/confidentiality.png|Showing the output of the aforementioned form submission]
+![Showing the output of the aforementioned form submission](/assets/media/hacktivity2021/confidentiality.png)
  
 ## Forensics
 ### Bacon in a Haystack
@@ -105,7 +105,7 @@ I started by looking through the DNS logs and saw a bunch of requests for random
 
 The github grep returns DNS queries for `sketchysite.github.io`. I navigate there and am greeted by the flag. 
 
-![/assets/media/hacktivity2021/bacon.png|Screenshot of flag at sketchysite.github.io]
+![Screenshot of flag at sketchysite.github.io](/assets/media/hacktivity2021/bacon.png)
 
 ## Miscellaneous
 ### Bad Words
@@ -245,7 +245,7 @@ done
 
 Eventually I get a file named `flag.png`. 
 
-![/assets/media/hacktivity2021/uhaha.png|image of flag]
+![image of flag](/assets/media/hacktivity2021/uhaha.png)
 
 I couldn't stop thinking about [this scene](https://www.youtube.com/watch?v=GY8EDRsRhik) from Finding Nemo while doing this challenge. *Sharkbait, Ooh Ha Ha!*
 
@@ -404,14 +404,14 @@ A shallot is an *allium* vegetable just like an *onion*. Which is a hint that th
 
 I load up a TOR browser and visit the `.onion` URL provided in the paste. It's another Pastebin-style website. I use the smaller string `pduplowzp/nndw79` as a subdirectory and find the flag.
 
-![/assets/media/hacktivity2021/shallot.png|screenshot of a paste containing the flag]
+![screenshot of a paste containing the flag](/assets/media/hacktivity2021/shallot.png)
 
 ### Jed Sheeran
 Challenge Author: @JohnHammond#6971  
 
 I googled "Jed Sheeran" and find [this](https://soundcloud.com/user-836083929-176777888) Soundcloud profile. The flag is in one of the comments on one of the songs.
 
-![/assets/media/hacktivity2021/jed.png|Picture of a comment with the flag in it]
+![Picture of a comment with the flag in it](/assets/media/hacktivity2021/jed.png)
 
 # Personal Reflection
 This was my first jeopardy style CTF and I had a ton of fun. I competed fairly casually, didn't pull any all-nighters or anything like that. 
@@ -424,4 +424,4 @@ I adore cooking but it doesn't have the same engrossing feeling that video games
 
 >**Thank you John Hammond.** 
 
-![/assets/media/hacktivity2021/cert.png|A certificate of participation for the CTF, I placed 121/2527. I'll get top 10 next year :)]
+![A certificate of participation for the CTF, I placed 121/2527. I'll get top 10 next year :)](/assets/media/hacktivity2021/cert.png)
