@@ -15,9 +15,7 @@ minute: 15
 # H@cktivityCon 2021 CTF
 ## Warmup Challenges
 ### Read the Rules
->Author: @JohnHammond#6971  
->  
->Please follow the rules for this CTF!
+Challenge Author: @JohnHammond#6971  
 
 A flag in the source code of the rules page. 
 
@@ -28,9 +26,7 @@ A flag in the source code of the rules page.
 ```
 
 ### Six Four Over Two
->Author: @JohnHammond#6971  
->  
->I wanted to cover all the bases so I asked my friends what they thought, but they said this challenge was too basic...
+Challenge Author: @JohnHammond#6971  
 
 The challenge provided this encoded value:
 ```
@@ -45,58 +41,47 @@ flag{a45d4e70bfc407645185dd9114f9c0ef}
  ```
  
 ### Tsunami
->Author: @JohnHammond#6971  
->  
->Woah! It's a natural disaster! But something doesn't seem so natural about this big wave...
+Challenge Author: @JohnHammond#6971  
 
 The challenge provided a file named `tsunami`. Using the `file` command on it reveals that it is a WAVE audio file. 
  
 I add the .wav extension to it and opened it in Audacity. After clicking on the *spectogram* view mode, the flag is revealed.
  
-![[/assets/media/hacktivity2021/tsunami.png|Flag shown as a spectogram]]
+![/assets/media/hacktivity2021/tsunami.png|Flag shown as a spectogram]
  
 ### Pimple
->Author: @JohnHammond#6971  
->  
->This challenge is simple, it's just a pimple!
+Challenge Author: @JohnHammond#6971  
 
 The challenge provided a file named `pimple`. Using the `file` command on it reveals that it is a type of image file. I open it in Gimp and see multiple layers of pictures of random people's faces. One of the layers has the flag in the image. 
  
-![[/assets/media/hacktivity2021/pimple.png|Flag in one of the image layers]]
+![/assets/media/hacktivity2021/pimple.png|Flag in one of the image layers]
  
 ## Web
 ### Swaggy
->Author: @congon4tor#2334  
->  
->This API documentation has all the swag
+Challenge Author: @congon4tor#2334  
 
 The challenge provided Swagger documentation and an API with the `/flag` GET request endpoint. 
  
 As shown below, performing the GET request results in the `missing authorization header` response. 
  
-![[/assets/media/hacktivity2021/swaggy1.png|Swagger API documentation]]
+![/assets/media/hacktivity2021/swaggy1.png|Swagger API documentation]
   
 I initially try the `admin:password` credentials, which doesn't work. My second guess is `admin:admin` which results in the server responding with the flag.
  
-![[/assets/media/hacktivity2021/swaggy2.png|Request with basic auth header and flag response]]
+![/assets/media/hacktivity2021/swaggy2.png|Request with basic auth header and flag response]
  
 ### Confidentiality
->Author: @JohnHammond#6971  
->  
->My school was trying to teach people about the CIA triad so they made all these dumb example applications... as if they know anything about information security. Can you prove these aren't so secure?
+Challenge Author: @JohnHammond#6971  
 
 The challenge provided a website with a simple form field. Submitting the name of a file or directory as part of that form would return the output of the `ls -lsa` command using your provided input as the argument.
  
 By submitting `/etc/hosts;cat flag.txt`, the underlying application performs the `ls -lsa /etc/hosts` command, then because of the `;` performs the `cat flag.txt` command.
  
-![[/assets/media/hacktivity2021/confidentiality.png|Showing the output of the aforementioned form submission]]
+![/assets/media/hacktivity2021/confidentiality.png|Showing the output of the aforementioned form submission]
  
 ## Forensics
 ### Bacon in a Haystack
->Author: NightWolf#0268  
->  
->I dropped my bacon in a haystack. :-/  
->Any ideas how we can find it?
+Challenge Author: NightWolf#0268  
 
 The challenge provided a bunch of traffic logs of different protocol types. The logs are shown below. 
 
@@ -120,16 +105,13 @@ I started by looking through the DNS logs and saw a bunch of requests for random
 
 The github grep returns DNS queries for `sketchysite.github.io`. I navigate there and am greeted by the flag. 
 
-![[/assets/media/hacktivity2021/bacon.png|Screenshot of flag at sketchysite.github.io]]
+![/assets/media/hacktivity2021/bacon.png|Screenshot of flag at sketchysite.github.io]
 
 ## Miscellaneous
 ### Bad Words
->Author: @JohnHammond#6971  
->  
->You look questionable... if you don't have anything good to say, don't say anything at all!
+Challenge Author: @JohnHammond#6971  
 
 I connect to a listening port and am dropped in a restricted shell. The shell seems to filter a lot of common commands. I try invoking `/bin/bash` to go into a new shell and it works. 
-
 
 ```bash
 ┌──(kali㉿kali)-[~/Documents/ctf/hacktivity/2021-09-08]
@@ -160,13 +142,7 @@ flag{2d43e30a358d3f30fe65cc47a9cbbe98}
 ```
 
 ### Race Car
->Author: @JohnHammond#6971  
->  
->_Zoooooom!_ Your login session is faster than a race car, it is over before you know it! Can you find where the brakes are?  
->  
->**Yes, that is intended functionality.**  
->  
->Escalate your privileges and retrieve the flag out of `root`'s home directory.
+Challenge Author: @JohnHammond#6971  
 
 This is a neat one, somewhat remeniscent of a level on OverTheWire's "Bandit" wargame. 
 
@@ -210,20 +186,14 @@ flag{f3deae2684d2bbec63d088374502a339}
 ```
 
 ### Redlike
->Author: @JohnHammond#6971  
->  
->You know, I like the color red. Primary colors are the best colors -- you can do so much with them!  
->  
->Escalate your privileges and retrieve the flag out of `root`'s home directory.
+Challenge Author: @JohnHammond#6971  
 
 Didn't get any pastes or screenshots for this one. I got ssh access to a box and just needed to do the Redis privesc wherein you load a custom module that lets you execute commands as the user that Redis is running as. 
 
 Here's a [link](https://book.hacktricks.xyz/pentesting/6379-pentesting-redis#load-redis-module) to that privilege escalation method.
 
 ### Shelle
->Author: @fumenoid#9548  
->  
->Professor Shelle created a custom psuedo shell for us to learn Linux, she believes it's safe and no one can ever read the flag. Can you prove her wrong?
+Challenge Author: @fumenoid#9548  
 
 This is another pseudo-shell / shell-escape challenge. I connected to the server and got a shell with a limited number of commands. The `/` character was restricted so I couldn't invoke `/bin/bash`. 
 
@@ -251,9 +221,7 @@ flag{82ad133488ad326eaf2120e03253e5d7}
 
 ## Scripting
 ### UHAHA
->Author: *@JohnHammond#6971* 
-UHAHA! You know? UHAHA?  
-If you feel you need passwords, you shouldn't need more than the top hundred from `rockyou`.
+Challenge Author: *@JohnHammond#6971* 
 
 They gave me a file named `uhaha`. By running `file` on it I learned that it was an Uharc archive file, which is an old compression algorithm.
 
@@ -277,14 +245,12 @@ done
 
 Eventually I get a file named `flag.png`. 
 
-![[/assets/media/hacktivity2021/uhaha.png|image of flag]]
+![/assets/media/hacktivity2021/uhaha.png|image of flag]
 
 I couldn't stop thinking about [this scene](https://www.youtube.com/watch?v=GY8EDRsRhik) from Finding Nemo while doing this challenge. *Sharkbait, Ooh Ha Ha!*
 
 ### Movie Marathon
->Author: @Blacknote#1337  
->  
->Heard some bozo bragging about knowing more movies than anyone else? Could you put him in his place, please!
+Challenge Author: @Blacknote#1337  
 
 I didn't actually finish this one because the IMDB API went down and I was too lazy to find another one (also they flagged my account). But basically you connect to a port and it gives you a movie and its release date and you have to respond with 5 actors that starred in that movie. 
 
@@ -404,11 +370,7 @@ where I normalize characters with accents since those seemed to give the listene
 
 ## OSINT
 ### Don T. Mason
->Author: @JohnHammond#6971
->
->So this is a weird one. We've been having trouble tracking down Don because of the name conflict between some baseball player or something? All we know is that he likes elephants. Like, he _reaalllyy_ likes elephants.  
->
->**Find the flag somewhere in the world wide web with the clues provided.**
+Challenge Author: @JohnHammond#6971
 
 I just used the name "Don T. Mason" as a seed for a Spiderfoot scan and clicked through all of the website profile pages it generated. Eventually I came accross [this](https://mastodon.social/@donmason?max_id=106774436605922101) Mastodon page and when I saw all the elephants I knew I'd found it. I also knew I'd found it just when I saw the website name `mastodon`, since it's an ancestor of the elephant species. Also Don T. Mason is an anagram for Mastodon.
 
@@ -423,11 +385,7 @@ flag{fbec1486e542c5d96f725cd6009ffef5}
 ```
 
 ### Mike Shallot
->Author: @JohnHammond#6971  
-> 
->Mike Shallot is one shady fella. We are aware of him trying to share some specific intel, but hide it amongst the corners and crevices of internet. Can you find his secret?  
->  
->**Find the flag somewhere in the world wide web with the clues provided.**
+Challenge Author: @JohnHammond#6971  
 
 I used "Mike Shallot" as a seed for a Spiderfoot scan and clicked through all of the website profile pages it generated. This led to me [this](https://pastebin.com/WVUP8dRD) pastebin:
 
@@ -446,18 +404,14 @@ A shallot is an *allium* vegetable just like an *onion*. Which is a hint that th
 
 I load up a TOR browser and visit the `.onion` URL provided in the paste. It's another Pastebin-style website. I use the smaller string `pduplowzp/nndw79` as a subdirectory and find the flag.
 
-![[/assets/media/hacktivity2021/shallot.png|screenshot of a paste containing the flag]]
+![/assets/media/hacktivity2021/shallot.png|screenshot of a paste containing the flag]
 
 ### Jed Sheeran
->Author: @JohnHammond#6971  
->
->Oh we have another fan with a budding music career! Jed Sheeran is seemingly trying to produce new songs based off of his number one favorite artist... but it doesn't all sound so good. Can you find him?  
-> 
->**Find the flag somewhere in the world wide web with the clues provided.**
+Challenge Author: @JohnHammond#6971  
 
 I googled "Jed Sheeran" and find [this](https://soundcloud.com/user-836083929-176777888) Soundcloud profile. The flag is in one of the comments on one of the songs.
 
-![[/assets/media/hacktivity2021/jed.png|Picture of a comment with the flag in it]]
+![/assets/media/hacktivity2021/jed.png|Picture of a comment with the flag in it]
 
 # Personal Reflection
 This was my first jeopardy style CTF and I had a ton of fun. I competed fairly casually, didn't pull any all-nighters or anything like that. 
@@ -470,4 +424,4 @@ I adore cooking but it doesn't have the same engrossing feeling that video games
 
 >**Thank you John Hammond.** 
 
-![[/assets/media/hacktivity2021/cert.png|A certificate of participation for the CTF, I placed 121/2527. I'll get top 10 next year :)]]
+![/assets/media/hacktivity2021/cert.png|A certificate of participation for the CTF, I placed 121/2527. I'll get top 10 next year :)]
