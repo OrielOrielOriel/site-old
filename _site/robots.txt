@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://h0th.lol/sitemap.xml

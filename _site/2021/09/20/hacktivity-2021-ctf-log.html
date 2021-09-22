@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CTF Log - H@cktivityCon 2021 CTF | Hacking on the Horizon</title><meta name="generator" content="Jekyll v4.2.0" /><meta property="og:title" content="CTF Log - H@cktivityCon 2021 CTF" /><meta property="og:locale" content="en_US" /><meta name="description" content="A log of the challenges I completed during the H@cktivityCon 2021 CTF" /><meta property="og:description" content="A log of the challenges I completed during the H@cktivityCon 2021 CTF" /><link rel="canonical" href="https://h0th.lol/2021/09/20/hacktivity-2021-ctf-log" /><meta property="og:url" content="https://h0th.lol/2021/09/20/hacktivity-2021-ctf-log" /><meta property="og:site_name" content="Hacking on the Horizon" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2021-09-20T00:00:00-05:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="CTF Log - H@cktivityCon 2021 CTF" /><meta name="twitter:site" content="@OrielOrielOriel" /> <script type="application/ld+json"> {"@type":"BlogPosting","headline":"CTF Log - H@cktivityCon 2021 CTF","dateModified":"2021-09-20T00:00:00-05:00","datePublished":"2021-09-20T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://h0th.lol/2021/09/20/hacktivity-2021-ctf-log"},"description":"A log of the challenges I completed during the H@cktivityCon 2021 CTF","url":"https://h0th.lol/2021/09/20/hacktivity-2021-ctf-log","@context":"https://schema.org"}</script><link rel="shortcut icon" href="/favicon.png"><link rel="alternate" type="application/atom+xml" title="Hacking on the Horizon" href="/atom.xml"><link rel="sitemap" type="application/xml" title="sitemap" href="/sitemap.xml" /><style type="text/css"> @font-face{font-family:"Chicago";src:url("/ChicagoFLF.ttf")}body{font-size:1rem;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%;zoom:1;font-family:"Chicago", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"}header p strong{text-transform:uppercase}.post-title{background:whitesmoke;margin:10rem 0;color:black;padding:2rem;font-weight:bold}article p{font-size:88%}a,a:visited{color:whitesmoke;font-weight:bold}a:hover,a:visited:hover{color:white}a.active{background:whitesmoke;padding:0.5rem;color:black;font-weight:bold}blockquote{background:black;border-left:5px solid whitesmoke;font-size:120%;margin:2rem 0;padding:1rem}blockquote p{margin:0}blockquote footer{font-size:90%;margin:1rem 0 0 0}dl dt{margin-bottom:0.5rem}dl dd{font-style:italic;margin-bottom:2rem}code,pre{font-family:San Francisco Mono,Monaco,"Consolas","Lucida Console","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;font-size:84%}pre{border-left:1.3px dashed whitesmoke;color:whitesmoke;overflow:auto;padding:1em;width:98%}.date{opacity:0.6}.emoji{font-size:110%}.dark{color:#2a2453}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}body{background-color:black;color:whitesmoke;margin:0 auto;max-width:50rem;padding:1rem}strong,b,h1,h2,h3,h4{font-weight:bold}hr{background:whitesmoke;border:0;height:2px;margin:2rem 0;width:100%}table{border-collapse:collapse;text-align:left;width:100%}table tr{border-bottom:1px solid whitesmoke}table td{padding:0.5rem}img{width:100%;margin:0.5rem 0}nav ul{list-style:none;padding:0;text-align:center}nav ul li{display:inline-block}nav a{margin:0.5rem;text-transform:uppercase}footer{margin:2rem 0}</style></head><body><header role="banner"><nav role="navigation"><ul><li><a href="/" >/</a></li><li><a href="/notes" >/notes</a></li></ul></nav></header><hr><main id="main" role="main"><article role="article"><h1>CTF Log - H@cktivityCon 2021 CTF</h1><time class="date" datetime="2021-09-20T00:00:00-05:00">September 20, 2021</time><p><br /></p><blockquote><p>A log of the challenges I completed during the H@cktivityCon 2021 CTF</p></blockquote><p><br /></p><h1 id="hcktivitycon-2021-ctf">H@cktivityCon 2021 CTF</h1><h2 id="warmup-challenges">Warmup Challenges</h2><h3 id="read-the-rules">Read the Rules</h3><p>Challenge Author: @JohnHammond#6971</p><p>A flag in the source code of the rules page.</p><div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--     Thank you for reading the rules! Your flag is:         --&gt;</span>
+<span class="c">&lt;!--        flag{90bc54705794a62015369fd8e86e557b}              --&gt;</span>
+<span class="c">&lt;!-- You will have to wait until the CTF starts to submit this! --&gt;</span>
+</code></pre></div></div><h3 id="six-four-over-two">Six Four Over Two</h3><p>Challenge Author: @JohnHammond#6971</p><p>The challenge provided this encoded value:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EBTGYYLHPNQTINLEGRSTOMDCMZRTIMBXGY2DKMJYGVSGIOJRGE2GMOLDGBSWM7IK
+</code></pre></div></div><p>The name of the challenge and the capital letters clued me into the fact that this is a base32 encoded string.</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/Documents/ctf/hacktivity]
+└─<span class="nv">$ </span><span class="nb">echo</span> <span class="nt">-n</span> <span class="s1">'EBTGYYLHPNQTINLEGRSTOMDCMZRTIMBXGY2DKMJYGVSGIOJRGE2GMOLDGBSWM7IK'</span> | <span class="nb">base32</span> <span class="nt">-d</span>
+flag<span class="o">{</span>a45d4e70bfc407645185dd9114f9c0ef<span class="o">}</span>
+</code></pre></div></div><h3 id="tsunami">Tsunami</h3><p>Challenge Author: @JohnHammond#6971</p><p>The challenge provided a file named <code class="language-plaintext highlighter-rouge">tsunami</code>. Using the <code class="language-plaintext highlighter-rouge">file</code> command on it reveals that it is a WAVE audio file.</p><p>I add the .wav extension to it and opened it in Audacity. After clicking on the <em>spectogram</em> view mode, the flag is revealed.</p><p><img src="/assets/media/hacktivity2021/tsunami.png" alt="Flag shown as a spectogram" /></p><h3 id="pimple">Pimple</h3><p>Challenge Author: @JohnHammond#6971</p><p>The challenge provided a file named <code class="language-plaintext highlighter-rouge">pimple</code>. Using the <code class="language-plaintext highlighter-rouge">file</code> command on it reveals that it is a type of image file. I open it in Gimp and see multiple layers of pictures of random people’s faces. One of the layers has the flag in the image.</p><p><img src="/assets/media/hacktivity2021/pimple.png" alt="Flag in one of the image layers" /></p><h2 id="web">Web</h2><h3 id="swaggy">Swaggy</h3><p>Challenge Author: @congon4tor#2334</p><p>The challenge provided Swagger documentation and an API with the <code class="language-plaintext highlighter-rouge">/flag</code> GET request endpoint.</p><p>As shown below, performing the GET request results in the <code class="language-plaintext highlighter-rouge">missing authorization header</code> response.</p><p><img src="/assets/media/hacktivity2021/swaggy1.png" alt="Swagger API documentation" /></p><p>I initially try the <code class="language-plaintext highlighter-rouge">admin:password</code> credentials, which doesn’t work. My second guess is <code class="language-plaintext highlighter-rouge">admin:admin</code> which results in the server responding with the flag.</p><p><img src="/assets/media/hacktivity2021/swaggy2.png" alt="Request with basic auth header and flag response" /></p><h3 id="confidentiality">Confidentiality</h3><p>Challenge Author: @JohnHammond#6971</p><p>The challenge provided a website with a simple form field. Submitting the name of a file or directory as part of that form would return the output of the <code class="language-plaintext highlighter-rouge">ls -lsa</code> command using your provided input as the argument.</p><p>By submitting <code class="language-plaintext highlighter-rouge">/etc/hosts;cat flag.txt</code>, the underlying application performs the <code class="language-plaintext highlighter-rouge">ls -lsa /etc/hosts</code> command, then because of the <code class="language-plaintext highlighter-rouge">;</code> performs the <code class="language-plaintext highlighter-rouge">cat flag.txt</code> command.</p><p><img src="/assets/media/hacktivity2021/confidentiality.png" alt="Showing the output of the aforementioned form submission" /></p><h2 id="forensics">Forensics</h2><h3 id="bacon-in-a-haystack">Bacon in a Haystack</h3><p>Challenge Author: NightWolf#0268</p><p>The challenge provided a bunch of traffic logs of different protocol types. The logs are shown below.</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/Documents/ctf/hacktivity/2021-09-08]
+└─<span class="nv">$ </span><span class="nb">ls     
+</span>capture_loss.00:00:00-01:00:00.log  conn-summary.00:00:00-01:00:00.log  files.00:00:00-01:00:00.log           notice.00:00:00-01:00:00.log         reporter.03:53:19-03:53:19.log  stats.03:53:19-03:53:21.log
+capture_loss.01:00:00-02:00:00.log  conn-summary.01:00:00-02:00:00.log  files.01:00:00-02:00:00.log           notice.01:00:00-02:00:00.log         software.02:15:51-03:00:00.log  stderr.02:15:41-03:53:21.log
+capture_loss.02:16:42-03:00:00.log  conn-summary.02:00:00-02:01:50.log  files.02:00:00-02:01:50.log           notice.02:20:05-03:00:00.log         ssl.00:00:00-01:00:00.log       stdout.02:15:41-03:53:21.log
+capture_loss.03:00:00-03:53:19.log  conn-summary.02:15:56-03:00:00.log  files.02:15:51-03:00:00.log           notice.03:00:00-03:53:19.log         ssl.01:00:00-02:00:00.log       weird.00:00:00-01:00:00.log
+capture_loss.03:53:19-03:53:21.log  conn-summary.03:00:00-03:53:19.log  files.03:00:00-03:53:19.log           ocsp.00:00:00-01:00:00.log           ssl.02:00:00-02:01:50.log       weird.02:16:09-03:00:00.log
+conn.00:00:00-01:00:00.log          conn-summary.03:53:19-03:53:21.log  http.00:00:00-01:00:00.log            ocsp.01:00:00-02:00:00.log           ssl.02:15:47-03:00:00.log       weird.03:00:00-03:53:19.log
+conn.01:00:00-02:00:00.log          dns.00:00:00-01:00:00.log           http.01:00:00-02:00:00.log            ocsp.02:00:00-02:01:50.log           ssl.03:00:00-03:53:19.log       x509.00:00:00-01:00:00.log
+conn.02:00:00-02:01:50.log          dns.01:00:00-02:00:00.log           http.02:15:51-03:00:00.log            ocsp.02:16:08-03:00:00.log           stats.00:00:00-01:00:00.log     x509.01:00:00-02:00:00.log
+conn.02:15:56-03:00:00.log          dns.02:00:00-02:01:50.log           http.03:00:00-03:53:19.log            ocsp.03:00:00-03:53:19.log           stats.01:00:00-02:00:00.log     x509.02:15:48-03:00:00.log
+conn.03:00:00-03:53:19.log          dns.02:15:46-03:00:00.log           known_hosts.02:15:46-03:00:00.log     packet_filter.02:15:42-03:00:00.log  stats.02:15:42-03:00:00.log     x509.03:00:00-03:53:19.log
+conn.03:53:19-03:53:21.log          dns.03:00:00-03:53:19.log           loaded_scripts.02:15:42-03:00:00.log  reporter.00:00:00-01:00:00.log       stats.03:00:00-03:53:19.log
+</code></pre></div></div><p>I started by looking through the DNS logs and saw a bunch of requests for random domains. After manually looking through the various domains I grep through the entire directory for a couple sites like <code class="language-plaintext highlighter-rouge">defcon.com</code> and <code class="language-plaintext highlighter-rouge">github.com</code>.</p><p>The github grep returns DNS queries for <code class="language-plaintext highlighter-rouge">sketchysite.github.io</code>. I navigate there and am greeted by the flag.</p><p><img src="/assets/media/hacktivity2021/bacon.png" alt="Screenshot of flag at sketchysite.github.io" /></p><h2 id="miscellaneous">Miscellaneous</h2><h3 id="bad-words">Bad Words</h3><p>Challenge Author: @JohnHammond#6971</p><p>I connect to a listening port and am dropped in a restricted shell. The shell seems to filter a lot of common commands. I try invoking <code class="language-plaintext highlighter-rouge">/bin/bash</code> to go into a new shell and it works.</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/Documents/ctf/hacktivity/2021-09-08]
+└─<span class="nv">$ </span>nc challenge.ctf.games 31873
+bash: cannot <span class="nb">set </span>terminal process group <span class="o">(</span><span class="nt">-1</span><span class="o">)</span>: Inappropriate ioctl <span class="k">for </span>device
+bash: no job control <span class="k">in </span>this shell
+user@host:/home/user<span class="nv">$ </span><span class="nb">id
+id
+</span>You said a bad word, <span class="s2">"id"</span><span class="o">!!</span>
+user@host:/home/user<span class="nv">$ </span>/bin/bash
+/bin/bash
+<span class="nb">ls
+</span>just
+<span class="nb">cd </span>just
+<span class="nb">ls
+</span>out
+<span class="nb">cd </span>out
+<span class="nb">ls
+</span>of
+<span class="nb">cd </span>of
+<span class="nb">ls
+</span>reach
+<span class="nb">cd </span>reach
+<span class="nb">ls
+</span>flag.txt
+<span class="nb">cat </span>flag.txt
+flag<span class="o">{</span>2d43e30a358d3f30fe65cc47a9cbbe98<span class="o">}</span>
+</code></pre></div></div><h3 id="race-car">Race Car</h3><p>Challenge Author: @JohnHammond#6971</p><p>This is a neat one, somewhat remeniscent of a level on OverTheWire’s “Bandit” wargame.</p><p>The challenge provides me with credentials and an address to ssh to, but the connection is closed immediately upon connecting.</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/Documents/ctf/hacktivity/2021-09-08]
+└─<span class="nv">$ </span>ssh <span class="nt">-p</span> 32532 user@challenge.ctf.games
+user@challenge.ctf.games<span class="s1">'s password: 
+Connection to challenge.ctf.games closed by remote host.
+Connection to challenge.ctf.games closed.
+</span></code></pre></div></div><p>I tried a lot of different things and read a lot of different stackoverflow articles trying to figure out what the problem was. I initially thought it was something like <code class="language-plaintext highlighter-rouge">exit 0</code> or some kind of <code class="language-plaintext highlighter-rouge">pkill</code> command in the user’s <code class="language-plaintext highlighter-rouge">.bashrc</code>, <code class="language-plaintext highlighter-rouge">.profile</code>, <code class="language-plaintext highlighter-rouge">.bash_profile</code>, or <code class="language-plaintext highlighter-rouge">.login</code> file. As a result I tried a lot of different on-connect <code class="language-plaintext highlighter-rouge">sed</code> commands to try to remove the suspected issue from those files. That didn’t work, however.</p><p>Eventually I wisened up and tried connecting over <code class="language-plaintext highlighter-rouge">sftp</code> and was able to poke around the filesystem from there. I found a <a href="https://docstore.mik.ua/orelly/networking_2ndEd/ssh/ch08_04.htm"><code class="language-plaintext highlighter-rouge">rc</code> file</a> in the user’s <code class="language-plaintext highlighter-rouge">.ssh/</code> directory with the following contents:</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+pkill ssh
+<span class="nb">logout
+exit</span>
+</code></pre></div></div><p>I used <code class="language-plaintext highlighter-rouge">put</code> to overwrite the file and was then able to ssh in with no issue. The privesc wasn’t really a privesc, I just did <code class="language-plaintext highlighter-rouge">sudo su</code> to become <code class="language-plaintext highlighter-rouge">root</code> and get the flag.</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/Documents/ctf/hacktivity/2021-09-08]
+└─<span class="nv">$ </span>ssh <span class="nt">-p</span> 32532 user@challenge.ctf.games 
+user@challenge.ctf.games<span class="s1">'s password: 
+user@race-car-1744c696a30f0f35-f4fb64845-wjdhc:~$ sudo -l
+Matching Defaults entries for user on race-car-1744c696a30f0f35-f4fb64845-wjdhc:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User user may run the following commands on race-car-1744c696a30f0f35-f4fb64845-wjdhc:
+    (root) NOPASSWD: ALL
+user@race-car-1744c696a30f0f35-f4fb64845-wjdhc:~$ sudo su
+root@race-car-1744c696a30f0f35-f4fb64845-wjdhc:/home/user# cat /root/flag.txt
+flag{f3deae2684d2bbec63d088374502a339}
+</span></code></pre></div></div><h3 id="redlike">Redlike</h3><p>Challenge Author: @JohnHammond#6971</p><p>Didn’t get any pastes or screenshots for this one. I got ssh access to a box and just needed to do the Redis privesc wherein you load a custom module that lets you execute commands as the user that Redis is running as.</p><p>Here’s a <a href="https://book.hacktricks.xyz/pentesting/6379-pentesting-redis#load-redis-module">link</a> to that privilege escalation method.</p><h3 id="shelle">Shelle</h3><p>Challenge Author: @fumenoid#9548</p><p>This is another pseudo-shell / shell-escape challenge. I connected to the server and got a shell with a limited number of commands. The <code class="language-plaintext highlighter-rouge">/</code> character was restricted so I couldn’t invoke <code class="language-plaintext highlighter-rouge">/bin/bash</code>.</p><p>I was able to escape by typing <code class="language-plaintext highlighter-rouge">$SHELL</code> which, as a common environment variable mapping to the current shell, was analogous to <code class="language-plaintext highlighter-rouge">/bin/bash</code>. I poked around and found the flag in <code class="language-plaintext highlighter-rouge">/opt/flag.txt</code>.</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/Documents/ctf/hacktivity/2021-09-08]                        
+└─<span class="nv">$ </span>nc challenge.ctf.games 30414
+Welcome to Shelle, a custom psuedo shell utility created by Professor Shelle <span class="k">in </span>order to teach students about Linux terminals                                                                 
+Shelle is a restricted environment to prevent any misuse, Please Enter <span class="s1">'HELP'</span> to know about available features, happy learning <span class="o">!</span>
+
+root@pshelle<span class="nv">$/</span>bin/bash
+/bin/bash
+Illegal Character found, <span class="k">for </span>safety reasons only certain characters are allowed
+
+root@psuedoshell<span class="nv">$$</span>SHELL
+<span class="nv">$SHELL</span>
+bash: cannot <span class="nb">set </span>terminal process group <span class="o">(</span>1<span class="o">)</span>: Inappropriate ioctl <span class="k">for </span>device
+bash: no job control <span class="k">in </span>this shell
+bash: <span class="nb">groups</span>: <span class="nb">command </span>not found
+
+shelle@shelle-cca5d5573c813293-5f5dbcd88b-zlq6s:~<span class="nv">$ </span><span class="nb">cat</span> /opt/flag.txt
+flag<span class="o">{</span>82ad133488ad326eaf2120e03253e5d7<span class="o">}</span>
+</code></pre></div></div><h2 id="scripting">Scripting</h2><h3 id="uhaha">UHAHA</h3><p>Challenge Author: <em>@JohnHammond#6971</em></p><p>They gave me a file named <code class="language-plaintext highlighter-rouge">uhaha</code>. By running <code class="language-plaintext highlighter-rouge">file</code> on it I learned that it was an Uharc archive file, which is an old compression algorithm.</p><p>The CLI tool for decompressing .uha files is only for Windows, but I’m able to run it on Kali using Wine. I make a bash for loop to throw the top 100 passwords from <code class="language-plaintext highlighter-rouge">rockyou.txt</code> at it and am greeted by another filed named uhaha, which, as you would guess, is another Uharc compressed archive.</p><p>I used the following bash script to keep bruteforcing the decompression of Uharc archives as I suspect it’s like a bajillion files deep.</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="k">for </span>i <span class="k">in</span> <span class="o">{</span>1..10000<span class="o">}</span><span class="p">;</span><span class="k">do
+	for </span>ii <span class="k">in</span> <span class="sb">`</span><span class="nb">head</span> <span class="nt">-n</span> 101 /usr/share/wordlists/SecLists/Passwords/Leaked-Databases/rockyou.txt<span class="sb">`</span><span class="p">;</span><span class="k">do
+		</span>wine UHARC.EXE x <span class="nt">-y</span> <span class="nt">-pw</span><span class="nv">$ii</span> target.uha<span class="p">;</span>
+		<span class="k">if </span><span class="nb">ls</span> | <span class="nb">grep </span>uhaha<span class="p">;</span><span class="k">then
+			</span><span class="nb">mv </span>uhaha target.uha
+			<span class="nb">break
+		</span><span class="k">fi
+	done
+done</span>
+</code></pre></div></div><p>Eventually I get a file named <code class="language-plaintext highlighter-rouge">flag.png</code>.</p><p><img src="/assets/media/hacktivity2021/uhaha.png" alt="image of flag" /></p><p>I couldn’t stop thinking about <a href="https://www.youtube.com/watch?v=GY8EDRsRhik">this scene</a> from Finding Nemo while doing this challenge. <em>Sharkbait, Ooh Ha Ha!</em></p><h3 id="movie-marathon">Movie Marathon</h3><p>Challenge Author: @Blacknote#1337</p><p>I didn’t actually finish this one because the IMDB API went down and I was too lazy to find another one (also they flagged my account). But basically you connect to a port and it gives you a movie and its release date and you have to respond with 5 actors that starred in that movie.</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/Documents/ctf/hacktivity/uha]
+└─<span class="nv">$ </span>nc challenge.ctf.games 30016
+    __  ___           _         __  ___                 __  __              
+   /  |/  /___ _   __<span class="o">(</span>_<span class="o">)</span>__     /  |/  /___ __________ _/ /_/ /_  ____  ____ 
+  / /|_/ / __ <span class="se">\ </span>| / / / _ <span class="se">\ </span>  / /|_/ / __ <span class="sb">`</span>/ ___/ __ <span class="sb">`</span>/ __/ __ <span class="se">\/</span> __ <span class="se">\/</span> __ <span class="se">\</span>
+ / /  / / /_/ / |/ / /  __/  / /  / / /_/ / /  / /_/ / /_/ / / / /_/ / / / /
+/_/  /_/<span class="se">\_</span>___/|___/_/<span class="se">\_</span>__/  /_/  /_/<span class="se">\_</span>_,_/_/   <span class="se">\_</span>_,_/<span class="se">\_</span>_/_/ /_/<span class="se">\_</span>___/_/ /_/ 
+                                                                            
+You think you know movies more than I <span class="k">do</span>? If you can send me any 5 cast members <span class="k">for </span>each movie that I mention, I<span class="s1">'ll reward you.
+e.g. The Avengers (2012-04-25)
+Chris Evans; Robert Downey Jr.; Mark Ruffalo; Chris Hemsworth; Scarlett Johansson
+
+
+&gt; A Dog'</span>s Purpose <span class="o">(</span>2017-01-19<span class="o">)</span>
+</code></pre></div></div><p>I wrote the following Python3 script for this task.</p><div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">nclib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">KEY</span> <span class="o">=</span> <span class="s">'APIKEY'</span>
+<span class="n">SEARCH_API</span> <span class="o">=</span> <span class="s">'https://imdb-api.com/en/API/SearchMovie/'</span>
+<span class="n">CAST_API</span> <span class="o">=</span> <span class="s">'https://imdb-api.com/en/API/FullCast/'</span>
+
+<span class="k">def</span> <span class="nf">receive_data</span><span class="p">(</span><span class="n">connection</span><span class="p">):</span>
+	<span class="n">data</span> <span class="o">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">decode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">""</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">data</span>
+
+<span class="k">def</span> <span class="nf">parse_movie</span><span class="p">(</span><span class="n">current_movie_raw</span><span class="p">):</span>
+	<span class="n">movie</span> <span class="o">=</span> <span class="n">current_movie_raw</span><span class="p">[</span><span class="mi">1</span><span class="p">:].</span><span class="n">rstrip</span><span class="p">()</span>
+	<span class="n">ret</span> <span class="o">=</span> <span class="p">(</span><span class="n">movie</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span> <span class="o">=</span> <span class="n">movie</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"("</span><span class="p">)</span>
+	<span class="n">ret</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+	<span class="k">return</span> <span class="n">ret</span>
+
+<span class="k">def</span> <span class="nf">get_movie_details</span><span class="p">(</span><span class="n">current_movie</span><span class="p">):</span>
+	<span class="n">data</span> <span class="o">=</span> <span class="n">parse_movie</span><span class="p">(</span><span class="n">current_movie</span><span class="p">)</span> 
+	
+	<span class="k">def</span> <span class="nf">get_movie_id</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+		
+		<span class="k">try</span><span class="p">:</span>
+			<span class="n">url</span> <span class="o">=</span> <span class="n">SEARCH_API</span> <span class="o">+</span> <span class="n">KEY</span> <span class="o">+</span> <span class="s">'/'</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+			<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+			<span class="n">ret</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">)[</span><span class="s">"results"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">"id"</span><span class="p">]</span>
+
+			<span class="k">return</span> <span class="n">ret</span>
+		<span class="k">except</span> <span class="p">(</span><span class="nb">IndexError</span><span class="p">,</span> <span class="nb">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+			<span class="k">print</span><span class="p">(</span><span class="s">"sleeping"</span><span class="p">)</span>
+			<span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+			<span class="n">get_movie_id</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">get_movie_cast</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+		<span class="k">try</span><span class="p">:</span> 
+			<span class="n">url</span> <span class="o">=</span> <span class="n">CAST_API</span> <span class="o">+</span> <span class="n">KEY</span> <span class="o">+</span> <span class="s">'/'</span> <span class="o">+</span> <span class="nb">id</span>
+			<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+			<span class="n">j</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+			<span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+
+			<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+				<span class="n">ret</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">unicodedata</span><span class="p">.</span><span class="n">normalize</span><span class="p">(</span><span class="s">'NFD'</span><span class="p">,</span><span class="n">j</span><span class="p">[</span><span class="s">"actors"</span><span class="p">][</span><span class="n">num</span><span class="p">][</span><span class="s">"name"</span><span class="p">]).</span><span class="n">encode</span><span class="p">(</span><span class="s">'ascii'</span><span class="p">,</span> <span class="s">'ignore'</span><span class="p">))</span>
+
+			<span class="k">return</span> <span class="n">ret</span>
+
+		<span class="k">except</span> <span class="p">(</span><span class="nb">IndexError</span><span class="p">,</span> <span class="nb">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+			<span class="k">print</span><span class="p">(</span><span class="s">"sleeping"</span><span class="p">)</span>
+			<span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+			<span class="n">get_movie_cast</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+
+	<span class="nb">id</span> <span class="o">=</span> <span class="n">get_movie_id</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+	<span class="n">actors</span> <span class="o">=</span> <span class="n">get_movie_cast</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+
+	<span class="k">return</span> <span class="s">'; '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">actors</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">send_movie_details</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">details</span><span class="p">):</span>
+	<span class="n">connection</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">details</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+	<span class="n">ADDRESS</span> <span class="o">=</span> <span class="s">'challenge.ctf.games'</span>
+	<span class="n">PORT</span> <span class="o">=</span> <span class="mi">31260</span>
+	<span class="n">CURRENT_MOVIE</span> <span class="o">=</span> <span class="s">""</span>
+	<span class="n">RECORD_MOVIE</span> <span class="o">=</span> <span class="bp">False</span>
+
+	<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+		<span class="n">connection</span> <span class="o">=</span> <span class="n">nclib</span><span class="p">.</span><span class="n">Netcat</span><span class="p">((</span><span class="n">ADDRESS</span><span class="p">,</span> <span class="n">PORT</span><span class="p">))</span>
+		
+		<span class="k">while</span> <span class="ow">not</span> <span class="n">connection</span><span class="p">.</span><span class="n">eof</span><span class="p">:</span>
+			<span class="n">data</span> <span class="o">=</span> <span class="n">receive_data</span><span class="p">(</span><span class="n">connection</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">RECORD_MOVIE</span><span class="p">:</span>
+				<span class="n">CURRENT_MOVIE</span> <span class="o">+=</span> <span class="n">data</span>
+			<span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s">'&gt;'</span><span class="p">:</span>
+				<span class="n">RECORD_MOVIE</span> <span class="o">=</span> <span class="bp">True</span>
+			<span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span> <span class="ow">and</span> <span class="n">RECORD_MOVIE</span><span class="p">:</span>
+				<span class="n">RECORD_MOVIE</span> <span class="o">=</span> <span class="bp">False</span>
+				<span class="n">details</span> <span class="o">=</span> <span class="n">get_movie_details</span><span class="p">(</span><span class="n">CURRENT_MOVIE</span><span class="p">)</span>
+				<span class="k">print</span><span class="p">(</span><span class="n">details</span><span class="p">)</span>
+				<span class="n">send_movie_details</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="nb">str</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">details</span><span class="p">))</span>
+				<span class="n">CURRENT_MOVIE</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+	<span class="n">main</span><span class="p">()</span>
+</code></pre></div></div><p>A notable line is</p><div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ret</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">unicodedata</span><span class="p">.</span><span class="n">normalize</span><span class="p">(</span><span class="s">'NFD'</span><span class="p">,</span><span class="n">j</span><span class="p">[</span><span class="s">"actors"</span><span class="p">][</span><span class="n">num</span><span class="p">][</span><span class="s">"name"</span><span class="p">]).</span><span class="n">encode</span><span class="p">(</span><span class="s">'ascii'</span><span class="p">,</span> <span class="s">'ignore'</span><span class="p">))</span>
+</code></pre></div></div><p>where I normalize characters with accents since those seemed to give the listener trouble.</p><h2 id="osint">OSINT</h2><h3 id="don-t-mason">Don T. Mason</h3><p>Challenge Author: @JohnHammond#6971</p><p>I just used the name “Don T. Mason” as a seed for a Spiderfoot scan and clicked through all of the website profile pages it generated. Eventually I came accross <a href="https://mastodon.social/@donmason?max_id=106774436605922101">this</a> Mastodon page and when I saw all the elephants I knew I’d found it. I also knew I’d found it just when I saw the website name <code class="language-plaintext highlighter-rouge">mastodon</code>, since it’s an ancestor of the elephant species. Also Don T. Mason is an anagram for Mastodon.</p><p>The flag was in one of the posts:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I guess there is no hiding it.
+
+The trunk is used for breathing, bringing food and water to the mouth, and grasping objects. Tusks, which are derived from the incisor teeth, serve both as weapons and as tools for moving objects and digging. . Among African elephants, forest elephants have smaller and more rounded ears and thinner and straighter tusks than bush elephants and are limited in range to the forested areas of western and Central Africa.
+
+flag{fbec1486e542c5d96f725cd6009ffef5}
+</code></pre></div></div><h3 id="mike-shallot">Mike Shallot</h3><p>Challenge Author: @JohnHammond#6971</p><p>I used “Mike Shallot” as a seed for a Spiderfoot scan and clicked through all of the website profile pages it generated. This led to me <a href="https://pastebin.com/WVUP8dRD">this</a> pastebin:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This site is not as safe as we need it to be. 
+Meet me in the dark and I will share my secret with you.
+ 
+Find me in the shadows, these may act as your light:
+ 
+strongerw2ise74v3duebgsvug4mehyhlpa7f6kfwnas7zofs3kov7yd
+ 
+pduplowzp/nndw79
+</code></pre></div></div><p>A shallot is an <em>allium</em> vegetable just like an <em>onion</em>. Which is a hint that the next portion of this hunt is going to be on a <code class="language-plaintext highlighter-rouge">.onion</code> website.</p><p>I load up a TOR browser and visit the <code class="language-plaintext highlighter-rouge">.onion</code> URL provided in the paste. It’s another Pastebin-style website. I use the smaller string <code class="language-plaintext highlighter-rouge">pduplowzp/nndw79</code> as a subdirectory and find the flag.</p><p><img src="/assets/media/hacktivity2021/shallot.png" alt="screenshot of a paste containing the flag" /></p><h3 id="jed-sheeran">Jed Sheeran</h3><p>Challenge Author: @JohnHammond#6971</p><p>I googled “Jed Sheeran” and find <a href="https://soundcloud.com/user-836083929-176777888">this</a> Soundcloud profile. The flag is in one of the comments on one of the songs.</p><p><img src="/assets/media/hacktivity2021/jed.png" alt="Picture of a comment with the flag in it" /></p><h1 id="personal-reflection">Personal Reflection</h1><p>This was my first jeopardy style CTF and I had a ton of fun. I competed fairly casually, didn’t pull any all-nighters or anything like that.</p><p>I think it kind of awakened a flame in me for CTFs though because now I want to compete again next year, and more seriously. I think I might just do tons of CTFs for fun.</p><p>For some reason video games stopped being interesting to me a couple years ago and I’ve honestly been looking for a fun de-stressing activity to replace it. CTFs might be it.</p><p>I adore cooking but it doesn’t have the same engrossing feeling that video games used to have for me. Or that CTFs seem to have for me now. So hell yeah.</p><blockquote><p><strong>Thank you John Hammond.</strong></p></blockquote><p><img src="/assets/media/hacktivity2021/cert.png" alt="A certificate of participation for the CTF, I placed 121/2527. I'll get top 10 next year :)" /></p></article></main><hr><footer class="footer" role="contentinfo"> <small> <a href="/atom.xml">RSS Feed</a> / <a href="https://twitter.com/OrielOrielOriel">Twitter</a> / <a href="https://github.com/OrielOrielOriel">Github</a>. <br>© 2021 Hacking on the Horizon | Oriel <br><reminder class="dark">This is real. You are real.</reminder> </small></footer></body></html>
