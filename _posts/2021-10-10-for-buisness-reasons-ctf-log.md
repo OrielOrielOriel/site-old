@@ -30,7 +30,7 @@ The Docker container I landed in was lacking a lot core networking utils like `p
 I use their `awk` script:
 
 ```
-{% highlight bash [linenos] %}
+{% highlight bash linenos %}
 {% raw %}
 awk 'function hextodec(str,ret,n,i,k,c){
     ret = 0
