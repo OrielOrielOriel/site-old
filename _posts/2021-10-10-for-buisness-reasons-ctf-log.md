@@ -29,7 +29,7 @@ The Docker container I landed in was lacking a lot core networking utils like `p
 
 I use their `awk` script:
 
-{% highlight bash linenos %}
+```bash
 {% raw %}
 awk 'function hextodec(str,ret,n,i,k,c){
     ret = 0
@@ -51,7 +51,7 @@ function getIP(str,ret){
 } 
 NR > 1 {{if(NR==2)print "Local - Remote";local=getIP($2);remote=getIP($3)}{print local" - "remote}}' /proc/net/tcp
 {% endraw %}
-{% endhighlight %}
+```
 
 to see the current open TCP connections. 
 
