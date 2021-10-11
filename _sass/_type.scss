@@ -72,12 +72,12 @@ dl {
   }
 }
 
-.highlight {
+code, pre {
 	font-family: San Francisco Mono,Monaco,"Consolas","Lucida Console","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
 	font-size: 84%;
 }
 
-.highlight {
+pre {
   border-left: 1.3px dashed whitesmoke;
   overflow: auto;
   padding: 1em;
