@@ -33,13 +33,13 @@ a,a:visited {
   color: whitesmoke;
   font-weight: bold;
 
-  .notepost {
-    text-decoration-color: hotpink;
-  }
-
   &:hover {
     color: white;
   }
+}
+
+a.notepost {
+  text-decoration-color: hotpink;
 }
 
 a.active {
