@@ -74,14 +74,8 @@ dl {
 
 code, pre {
 	font-family: San Francisco Mono,Monaco,"Consolas","Lucida Console","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
-	font-size: 84%;
-}
-
-pre {
-  border-left: 1.3px dashed whitesmoke;
-  overflow: auto;
-  padding: 1em;
-  width: 98%;
+	font-style: italic;
+  color: greenyellow;
 }
 
 .date {
@@ -96,7 +90,15 @@ pre {
   color: rgb(42, 36, 83);
 }
 
-.highlight  { color: whitesmoke }
+.highlight  { 
+  font-family: San Francisco Mono,Monaco,"Consolas","Lucida Console","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
+	font-size: 84%;
+  color: whitesmoke; 
+  border-left: 1.3px dashed whitesmoke;
+  overflow: auto;
+  padding: 1em;
+  width: 98%;
+}
 .highlight .c { color: #008800; font-style: italic } /* Comment */
 .highlight .err { color: whitesmoke } /* Error */
 .highlight .esc { color: whitesmoke } /* Escape */
