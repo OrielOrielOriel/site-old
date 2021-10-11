@@ -96,9 +96,8 @@ pre {
   color: rgb(42, 36, 83);
 }
 
-.highlight .hll { background-color: #333333 }
 .highlight  { color: whitesmoke }
-.highlight .c { color: #008800; font-style: italic; background-color: #0f140f } /* Comment */
+.highlight .c { color: #008800; font-style: italic } /* Comment */
 .highlight .err { color: whitesmoke } /* Error */
 .highlight .esc { color: whitesmoke } /* Escape */
 .highlight .g { color: whitesmoke } /* Generic */
@@ -108,12 +107,12 @@ pre {
 .highlight .o { color: whitesmoke } /* Operator */
 .highlight .x { color: whitesmoke } /* Other */
 .highlight .p { color: whitesmoke } /* Punctuation */
-.highlight .ch { color: #008800; font-style: italic; background-color: #0f140f } /* Comment.Hashbang */
-.highlight .cm { color: #008800; font-style: italic; background-color: #0f140f } /* Comment.Multiline */
-.highlight .cp { color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f } /* Comment.Preproc */
-.highlight .cpf { color: #008800; font-style: italic; background-color: #0f140f } /* Comment.PreprocFile */
-.highlight .c1 { color: #008800; font-style: italic; background-color: #0f140f } /* Comment.Single */
-.highlight .cs { color: #008800; font-style: italic; background-color: #0f140f } /* Comment.Special */
+.highlight .ch { color: #008800; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #008800; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #ff0007; font-weight: bold; font-style: italic } /* Comment.Preproc */
+.highlight .cpf { color: #008800; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #008800; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #008800; font-style: italic } /* Comment.Special */
 .highlight .gd { color: whitesmoke } /* Generic.Deleted */
 .highlight .ge { color: whitesmoke } /* Generic.Emph */
 .highlight .gr { color: whitesmoke } /* Generic.Error */
