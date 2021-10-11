@@ -27,6 +27,7 @@ header p strong {
 
 article {
   p { font-size: 88%; }
+  a { text-decoration-color: hotpink; }
 }
 
 a,a:visited {
@@ -36,10 +37,6 @@ a,a:visited {
   &:hover {
     color: white;
   }
-}
-
-a .notepost {
-  text-decoration-color: hotpink;
 }
 
 a .active {
