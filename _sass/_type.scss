@@ -32,7 +32,10 @@ article {
 a,a:visited {
   color: whitesmoke;
   font-weight: bold;
-  text-decoration-color: hotpink;
+
+  .notepost {
+    text-decoration-color: hotpink;
+  }
 
   &:hover {
     color: white;
