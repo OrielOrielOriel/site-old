@@ -20,8 +20,6 @@ Found a Wordpress blog and noticed that the default/template posts were made by 
 
 Soon after, I landed a valid password. 
 
-I chucked a `rockyou.txt` bruteforce against the username `sysadmin` while I researched that vulnerability and landed a valid password.
-
 Edited an existing plugin to include a PHP reverse shell and enabled the plugin; got a shell as `www-data` in a Docker container.
 
 ## Proxying Through Docker Container
