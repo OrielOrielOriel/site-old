@@ -20,9 +20,8 @@ It looks like a simple blog a person named `marco`. They like planes.
 
 I'm able to manually find the `/admin/` directory which redirects me to a login page. After submitting incorrect credentials to capture a login request in Burpsuite, the page displays this message:
 
-```
-Remember that passwords should be a memorable word, followed by two numbers and a special character.
-```
+
+> Remember that passwords should be a memorable word, followed by two numbers and a special character.
 
 I go back to read through the site's content and find that marco's favorite plane is the Savoia M.21. I was able to guess the password based on this information.
 
