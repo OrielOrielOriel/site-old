@@ -85,7 +85,7 @@ Challenge Author: NightWolf#0268
 
 The challenge provided a bunch of traffic logs of different protocol types. The logs are shown below. 
 
-```bash
+```
 ┌──(kali㉿kali)-[~/Documents/ctf/hacktivity/2021-09-08]
 └─$ ls     
 capture_loss.00:00:00-01:00:00.log  conn-summary.00:00:00-01:00:00.log  files.00:00:00-01:00:00.log           notice.00:00:00-01:00:00.log         reporter.03:53:19-03:53:19.log  stats.03:53:19-03:53:21.log
