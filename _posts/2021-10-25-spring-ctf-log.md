@@ -43,7 +43,7 @@ This code snippet from `Application.java` shows why the `actuator/` directory wa
 
 The `application.properties` file has a lot of useful information which I end up using further in the CTF. At this point, the relevant line is `server.tomcat.remoteip.remote-ip-header=x-9ad42dea0356cb04`. A quick look at the [tomcat documentation](https://tomcat.apache.org/tomcat-8.5-doc/api/org/apache/catalina/valves/RemoteIpValve.html#:~:text=Name%20of%20the%20Http%20Header%20read%20by%20this%20valve%20that%20holds%20the%20list%20of%20traversed%20IP%20addresses%20starting%20from%20the%20requesting%20client) shows that this replaces the usual `x-forwarded-for`. Knowing this, I'm able to send a request using the `x-9ad42dea0356cb04` header to tell the server that my IP is one from the correct subnet. 
 
-![/assets/media/spring/x-forwarded-for.png](GET request with the aforementioned header parameter with 172.16.0.0 value, 200 response by server)
+![GET request with the aforementioned header parameter with 172.16.0.0 value, 200 response by server](/assets/media/spring/x-forwarded-for.png)
 
 This time the server lets me through and responds with a JSON of the available endpoints:
 
@@ -114,7 +114,7 @@ This is the first payload, to download the script. I then use the `/restart` end
 I get a shell as `nobody`. 
 
 ## Password Guessing
-![/assets/media/spring/nobody_env_vars.png](Environment variables, password is PrettyS3cureKeystorePassword123.)
+![Environment variables, password is PrettyS3cureKeystorePassword123.](/assets/media/spring/nobody_env_vars.png)
 
 This screenshot shows the environment variables for the user `nobody`. 
 
@@ -134,7 +134,7 @@ This was a really neat privesc, I enjoyed it a lot.
 
 In `johnsmith`'s home directory there's a `/tomcatlogs` directory. It appears to contain logs whose names are an epoch timestamp.
 
-![/assets/media/spring/systemctl.png](systemctl status spring output)
+![systemctl status spring output](/assets/media/spring/systemctl.png)
 
 There are two things to notice about the above screenshot. The first is that one of the processes spawned from the spring service is a `tee` of the logs to a logfile in the `/tomcatlogs` directory. The second is that I was able to use `systemctl shutdown spring` and the service automatically restarted, prompting a `tee` command to a new log file. 
 
@@ -152,7 +152,7 @@ There are two things to notice about the above screenshot. The first is that one
 
 The code above is from the `Application.java` file. It defines a class and function that take the `name` GET parameter and display it on the page, at the landing page location, `/`. 
 
-![/assets/media/spring/name_test.png](GET request with "oriel" as name parameter value)
+![GET request with "oriel" as name parameter value](/assets/media/spring/name_test.png)
 
 This screenshot shows a test of my hypothesis and confirms that the `name` parameter's value is reflected in the page. 
 
@@ -183,7 +183,7 @@ Since the `tee` command doesn't delete a file if it is already present, I'm able
 
 These files are then symlinked to `/root/.ssh/authorized_keys`. The command to perform this is `for x in {1634500389..1634502000};do touch $x.log && ln -s -f ~/test.txt $x.log;done`. I based the epoch time value on the current log file's and then added a thousand or two. 
 
-![/assets/media/spring/post_ssh_key.png](GET request with public SSH key as name parameter value)
+![GET request with public SSH key as name parameter value](/assets/media/spring/post_ssh_key.png)
 
 Since sshd ignores incorrect lines in the `authorized_keys` file, I'm able to send my URL encoded RSA public key through the `name` parameter. My public key will then be logged to one of my thousand symlinked files, which will put it in `root`'s `authorized_keys` file. 
 
